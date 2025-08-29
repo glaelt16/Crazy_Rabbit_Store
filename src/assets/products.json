@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Classic Tee",
+    "price": 20,
+    "image": "https://picsum.photos/seed/tee/400/400",
+    "description": "100% cotton."
+  },
+  {
+    "id": 2,
+    "name": "Cozy Hoodie",
+    "price": 45,
+    "image": "https://picsum.photos/seed/hoodie/400/400",
+    "description": "Fleece-lined warmth."
+  },
+  {
+    "id": 3,
+    "name": "Dad Cap",
+    "price": 18,
+    "image": "https://picsum.photos/seed/cap/400/400",
+    "description": "Adjustable strap."
+  }
+]

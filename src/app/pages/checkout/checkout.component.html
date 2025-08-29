@@ -1,0 +1,4 @@
+<h1>Checkout</h1>
+<p>Review total: <strong>{{ cart.total() | currency:'USD' }}</strong></p>
+<p><button (click)="openPaymentLink()">Pay securely</button></p>
+<p style="color:#777">(For a full cart-aware checkout, use a serverless Stripe Checkout function.)</p>
