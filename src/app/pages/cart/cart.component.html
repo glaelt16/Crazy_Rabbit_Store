@@ -1,22 +1,12 @@
 <h1>Your Cart</h1>
 <div *ngIf="cart.cartItems().length === 0">Your cart is empty.</div>
-
-<mat-list *ngIf="cart.cartItems().length > 0">
-  <mat-list-item *ngFor="let item of cart.cartItems()">
-    <span matListItemTitle>{{ item.name }} × {{ item.qty }}</span>
-    <span matListItemLine>{{ item.price | currency:'USD' }}</span>
-    <button mat-icon-button (click)="cart.remove(item.id)">
-      <mat-icon>remove_shopping_cart</mat-icon>
-    </button>
-  </mat-list-item>
-</mat-list>
-
-<h3 *ngIf="cart.cartItems().length > 0">Total: {{ cart.total() | currency:'USD' }}</h3>
-
+<ul>
+  <li *ngFor="let item of cart.cartItems()">
+    {{ item.name }} × {{ item.qty }} — {{ item.price | currency:'USD' }}
+    <button (click)="cart.remove(item.id)">Remove</button>
+  </li>
+</ul>
+<h3>Total: {{ cart.total() | currency:'USD' }}</h3>
 <div>
-  <a routerLink="/checkout">
-    <button mat-raised-button color="primary" [disabled]="cart.cartItems().length === 0">
-      Proceed to Checkout
-    </button>
-  </a>
+  <a routerLink="/checkout"><button [disabled]="cart.cartItems().length === 0">Proceed to Checkout</button></a>
 </div>
