@@ -1,12 +1,11 @@
-<mat-toolbar color="primary">
+<header class="nav">
   <a routerLink="/" class="brand">🛍️ My Apparel Store</a>
-  <span class="spacer"></span>
-  <a mat-button routerLink="/">Home</a>
-  <a mat-button routerLink="/cart">Cart ({{ cart.count() }})</a>
-</mat-toolbar>
-
+  <nav>
+    <a routerLink="/">Home</a>
+    <a routerLink="/cart">Cart ({{ cart.count() }})</a>
+  </nav>
+</header>
 <main class="container">
   <router-outlet />
 </main>
-
 <footer class="footer">© {{ getYear() }} My Apparel</footer>
