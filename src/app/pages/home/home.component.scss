@@ -1,5 +1,11 @@
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  display: flex;
+  overflow-x: auto;
   gap: 2rem;
+  padding-bottom: 1rem; /* for the scrollbar */
+}
+
+.grid > * {
+  flex: 0 0 calc(33.333% - 1.333rem); /* 3 cards per row, accounting for gap */
+  min-width: 250px;
 }
