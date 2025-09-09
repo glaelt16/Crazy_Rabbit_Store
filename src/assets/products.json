@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "name": "Classic Tee",
+    "name": "Crazy Rabbit. Pullover Hoodie",
     "price": 20,
     "image": "https://picsum.photos/seed/tee/400/400",
     "description": "100% cotton."
@@ -14,6 +14,34 @@
     "description": "Fleece-lined warmth."
   },
   {
+    "id": 3,
+    "name": "Dad Cap",
+    "price": 18,
+    "image": "https://picsum.photos/seed/cap/400/400",
+    "description": "Adjustable strap."
+  },
+    {
+    "id": 3,
+    "name": "Dad Cap",
+    "price": 18,
+    "image": "https://picsum.photos/seed/cap/400/400",
+    "description": "Adjustable strap."
+  },
+   {
+    "id": 3,
+    "name": "Dad Cap",
+    "price": 18,
+    "image": "https://picsum.photos/seed/cap/400/400",
+    "description": "Adjustable strap."
+  },
+   {
+    "id": 3,
+    "name": "Dad Cap",
+    "price": 18,
+    "image": "https://picsum.photos/seed/cap/400/400",
+    "description": "Adjustable strap."
+  },
+   {
     "id": 3,
     "name": "Dad Cap",
     "price": 18,
