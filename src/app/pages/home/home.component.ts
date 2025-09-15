@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   standalone: true,
   templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
   imports: [NgFor, AsyncPipe, ProductCardComponent, CommonModule]
 })
 export class HomeComponent {
