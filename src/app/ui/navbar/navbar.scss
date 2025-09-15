@@ -7,7 +7,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background-color: #111;
+  background-color: #4068ec;
   color: #fff;
 }
 
@@ -56,13 +56,23 @@
 }
 
 .nav-link {
-  color: #fff;
+  color: #eee5e5;
   text-decoration: none;
   margin-left: 1rem;
   transition: color 0.3s ease;
+  border-radius: 5px;
+  font-size: 25px;
+  padding: auto;
+  border-style: solid; /* Sets the border line style */
+  border-color: rgb(212, 199, 17);
+  cursor: pointer;
+  padding: 5px 10px;
+
+
 
   &:hover {
-    color: #ccc;
+    color: #7a7676;
+   
   }
 }
 
