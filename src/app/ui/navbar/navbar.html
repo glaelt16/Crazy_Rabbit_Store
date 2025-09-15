@@ -1,0 +1,12 @@
+<header class="navbar">
+  <a routerLink="/" class="navbar-brand">🛍️ Crazy Rabbit Store</a>
+
+  <button class="navbar-toggler" (click)="toggleMenu()">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <nav class="navbar-collapse" [class.show]="menuOpen()">
+    <a routerLink="/" class="nav-link">Home</a>
+    <a routerLink="/cart" class="nav-link">Cart ({{ cartCount() }})</a>
+  </nav>
+</header>
