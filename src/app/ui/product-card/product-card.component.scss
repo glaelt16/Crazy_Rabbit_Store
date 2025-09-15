@@ -11,6 +11,9 @@
   padding: 1rem;
   text-align: center;
   background-color: #fff; /* Add a background color to prevent transparency */
+  width: 300px; /* Fixed width */
+  max-width: 100%; /* Ensures responsiveness within parent container */
+  height: auto; 
 }
 
 .card:hover {
