@@ -1,0 +1,14 @@
+<nav class="navbar">
+  <a routerLink="/" class="brand">🛍️ My Apparel Store</a>
+  <div class="menu-toggle" (click)="toggleMenu()" [class.open]="isMenuOpen">
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <div class="nav-links" [class.open]="isMenuOpen">
+    <a routerLink="/" (click)="isMenuOpen = false">Home</a>
+    <a routerLink="/cart" (click)="isMenuOpen = false">Cart ({{ cart.count() }})</a>
+  </div>
+</nav>
