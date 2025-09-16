@@ -17,7 +17,8 @@
 }
 
 .navbar-logo {
-  height: 40px;
+  height: 40px
+  ;
 }
 
 .navbar-toggler {
@@ -101,5 +102,14 @@
   .nav-link {
     margin-left: 0;
     margin-bottom: 1rem;
+  }
+
+  .h1{
+    color: rgb(224, 224, 230);
+    font: size 0.8em;
+    text-align: center;
+    margin: top 10px;;
+    
+    padding: 2px;
   }
 }
