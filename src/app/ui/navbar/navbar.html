@@ -9,6 +9,8 @@
 
   <nav class="navbar-collapse" [class.show]="menuOpen()">
     <a routerLink="/products" class="nav-link">Products</a>
-    <a routerLink="/cart" class="nav-link">Cart ({{ cartCount() }})</a>
+    <a routerLink="/cart" class="nav-link">
+      <i class="bi bi-cart"></i> Cart ({{ cartCount() }})
+    </a>
   </nav>
 </header>
