@@ -1,12 +1,14 @@
 <header class="navbar">
-  <a routerLink="/" class="navbar-brand">🛍️ Crazy Rabbit Store</a>
+  <a routerLink="/" class="navbar-brand">
+    <img src="https://angular.io/assets/images/logos/angular/angular.svg" alt="Logo" class="navbar-logo">
+  </a>
 
   <button class="navbar-toggler" (click)="toggleMenu()">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <nav class="navbar-collapse" [class.show]="menuOpen()">
-    <a routerLink="/" class="nav-link">Home</a>
+    <a routerLink="/products" class="nav-link">Products</a>
     <a routerLink="/cart" class="nav-link">Cart ({{ cartCount() }})</a>
   </nav>
 </header>
