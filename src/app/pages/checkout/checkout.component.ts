@@ -1,11 +1,12 @@
-import { Component, inject  } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CartService } from '../../core/services/cart.service';
-import { CommonModule, CurrencyPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   standalone: true,
-   imports: [CommonModule],
-  templateUrl: './checkout.component.html'
+  imports: [CommonModule, MatButtonModule],
+  templateUrl: './checkout.component.html',
 })
 export class CheckoutComponent {
   cart = inject(CartService);

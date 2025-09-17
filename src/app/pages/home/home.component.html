@@ -1,4 +1,5 @@
-
-<div class="grid">
-  <app-product-card *ngFor="let p of products$ | async" [product]="p" />
-</div>
+<mat-grid-list cols="3" rowHeight="fit">
+  <mat-grid-tile *ngFor="let p of products$ | async">
+    <app-product-card [product]="p" />
+  </mat-grid-tile>
+</mat-grid-list>
