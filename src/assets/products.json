@@ -1,26 +1,26 @@
 [
   {
     "id": 1,
-    "name": "Classic Tee",
-    "price": 20,
-    "image": "https://picsum.photos/seed/tee/400/400",
+    "name": "Crazy Rabbit. Hoddie",
+    "price": 39,
+    "image": "https://m.media-amazon.com/images/I/B1mEhjGJ2nL._CLa%7C2140%2C2000%7CB1PzzjkzsaL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png",
     "description": "100% cotton.",
-    "amazonLink": "https://amazon.com"
+    "amazonLink": "https://amzn.to/4nskHmq"
   },
   {
     "id": 2,
-    "name": "Cozy Hoodie",
-    "price": 45,
-    "image": "https://picsum.photos/seed/hoodie/400/400",
-    "description": "Fleece-lined warmth.",
-    "amazonLink": "https://amazon.com"
+    "name": "Crazy Rabbit. Premium T-Shirt",
+    "price": 19,
+    "image": "https://m.media-amazon.com/images/I/91XFGdO22wL._CLa%7C2140%2C2000%7C813bWkaYkvL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png",
+    "description": "100% cotton.",
+    "amazonLink": "https://amzn.to/3I58QMa"
   },
   {
     "id": 3,
-    "name": "Dad Cap",
-    "price": 18,
-    "image": "https://picsum.photos/seed/cap/400/400",
-    "description": "Adjustable strap.",
-    "amazonLink": "https://amazon.com"
+    "name": "Egg and Platains Zip Hoodie",
+    "price": 33.99,
+    "image": "https://m.media-amazon.com/images/I/B1On3Y+j0-L._CLa%7C2140%2C2000%7C613kXh8rWuL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png",
+    "description": "100% cotton.",
+    "amazonLink": "https://amzn.to/48jF94o"
   }
 ]

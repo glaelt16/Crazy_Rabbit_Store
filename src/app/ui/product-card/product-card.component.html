@@ -1,18 +1,22 @@
-<div class="card">
-  <img [src]="product.image" [alt]="product.name" />
-  <h3>{{ product.name }}</h3>
-  <p class="price">${{ product.price }}</p>
-  <p class="desc">{{ product.description }}</p>
-  <div class="buttons">
-    <button (click)="cart.add(product)">Add to cart</button>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ product.name }}</mat-card-title>
+    <mat-card-subtitle>${{ product.price }}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image [src]="product.image" [alt]="product.name" />
+  <mat-card-content>
+    <p>{{ product.description }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="cart.add(product)">Add to cart</button>
     <a
       *ngIf="product.amazonLink"
+      mat-button
       [href]="product.amazonLink"
       target="_blank"
       rel="noopener noreferrer"
-      class="amazon-link"
     >
       View on Amazon
     </a>
-  </div>
-</div>
+  </mat-card-actions>
+</mat-card>
