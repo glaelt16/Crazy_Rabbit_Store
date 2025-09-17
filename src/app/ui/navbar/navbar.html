@@ -1,18 +1,14 @@
-<header class="navbar">
-  
+<mat-toolbar color="primary">
   <a routerLink="/" class="navbar-brand">
-    <img src="/assets/images/CrazyRabbit.png" alt="Logo" class="navbar-logo">
+    <img src="/assets/images/CrazyRabbit.png" alt="Logo" class="navbar-logo" />
   </a>
-  <!--<h1>Crazy Rabbit Apparel</h1> -->
-  
-  <button class="navbar-toggler" (click)="toggleMenu()">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <h1>Crazy Rabbit Apparel</h1>
 
-  <nav class="navbar-collapse" [class.show]="menuOpen()">
-    <a routerLink="/products" class="nav-link">Products</a>
-    <a routerLink="/cart" class="nav-link">
-      <i class="bi-cart"></i> Cart ({{ cartCount() }})
-    </a>
-  </nav>
-</header>
+  <span class="spacer"></span>
+
+  <a routerLink="/products" mat-button>Products</a>
+  <a routerLink="/cart" mat-button [matBadge]="cartCount()" [matBadgeHidden]="cartCount() === 0">
+    <mat-icon>shopping_cart</mat-icon>
+    Cart
+  </a>
+</mat-toolbar>
