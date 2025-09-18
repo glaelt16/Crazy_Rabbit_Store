@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/checkout.ts": {
+      "runtime": "nodejs18.x"
+    }
+  }
+}
