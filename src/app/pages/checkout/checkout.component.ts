@@ -1,17 +1,24 @@
-import { Component, inject  } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CartService } from '../../core/services/cart.service';
-import { CommonModule, CurrencyPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   standalone: true,
-   imports: [CommonModule],
-  templateUrl: './checkout.component.html'
+  imports: [CommonModule, HttpClientModule],
+  templateUrl: './checkout.component.html',
 })
 export class CheckoutComponent {
   cart = inject(CartService);
+  http = inject(HttpClient);
 
-  openPaymentLink() {
-    // Replace with your Stripe Payment Link URL
-    window.location.href = 'https://buy.stripe.com/test_XXXXXXXXXXXXXXXXXX';
+  redirectToCheckout() {
+    this.http
+      .post('/api/checkout', {
+        items: this.cart.cartItems(),
+      })
+      .subscribe((res: any) => {
+        window.location.href = res.url;
+      });
   }
 }
