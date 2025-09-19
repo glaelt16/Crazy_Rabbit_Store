@@ -32,6 +32,7 @@
     "@angular/router": "^20.2.0",
     "@types/stripe": "^8.0.416",
     "@vercel/node": "^2.3.0",
+    "@vercel/python": "^5.0.4",
     "bootstrap-icons": "^1.13.1",
     "rxjs": "~7.8.0",
     "stripe": "^18.5.0",
