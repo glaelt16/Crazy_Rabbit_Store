@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CartService } from '../../core/services/cart.service';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { loadStripe } from '@stripe/stripe-js';
 
 @Component({
   standalone: true,
@@ -12,13 +13,14 @@ export class CheckoutComponent {
   cart = inject(CartService);
   http = inject(HttpClient);
 
-  redirectToCheckout() {
-    this.http
-      .post('/api/checkout', {
-        items: this.cart.cartItems(),
-      })
-      .subscribe((res: any) => {
-        window.location.href = res.url;
-      });
-  }
+  
+  async redirectToCheckout() {
+  const stripe = await loadStripe('NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY');
+
+  this.http.post('/api/checkout', {
+    items: this.cart.cartItems(),
+  }).subscribe(async (res: any) => {
+    await stripe?.redirectToCheckout({ sessionId: res.id });
+  });
+}
 }
