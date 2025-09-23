@@ -30,6 +30,7 @@
     "@angular/material": "^20.2.3",
     "@angular/platform-browser": "^20.2.0",
     "@angular/router": "^20.2.0",
+    "@stripe/stripe-js": "^7.9.0",
     "@types/stripe": "^8.0.416",
     "@vercel/node": "^2.3.0",
     "@vercel/python": "^5.0.4",
