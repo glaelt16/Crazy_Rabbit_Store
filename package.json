@@ -21,6 +21,9 @@
     ]
   },
   "private": true,
+  "engines": {
+    "node": "16.x"
+  },
   "dependencies": {
     "@angular/cdk": "^20.2.3",
     "@angular/common": "^20.2.0",
