@@ -12,9 +12,10 @@ import { loadStripe } from '@stripe/stripe-js';
 export class CheckoutComponent {
   cart = inject(CartService);
   http = inject(HttpClient);
+
   
   async redirectToCheckout() {
-  const stripe = await loadStripe('STRIPE_SECRET_KEY');
+  const stripe = await loadStripe('NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY');
 
   this.http.post('/api/checkout', {
     items: this.cart.cartItems(),
