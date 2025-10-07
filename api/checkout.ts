@@ -41,5 +41,5 @@ export default async function handler(
     cancel_url: `${request.headers.origin}/cancel`,
   });
 
-  response.status(200).json({ url: session.url });
+  response.status(200).json({ id: session.id });
 }
