@@ -5,22 +5,21 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { loadStripe } from '@stripe/stripe-js';
 
 @Component({
+  selector: 'app-checkout',
   standalone: true,
   imports: [CommonModule, HttpClientModule],
   templateUrl: './checkout.component.html',
 })
+
 export class CheckoutComponent {
   cart = inject(CartService);
   http = inject(HttpClient);
 
-  
-  async redirectToCheckout() {
-  const stripe = await loadStripe('NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY');
-
-  this.http.post('/api/checkout', {
-    items: this.cart.cartItems(),
-  }).subscribe(async (res: any) => {
-    await stripe?.redirectToCheckout({ sessionId: res.id });
-  });
-}
+  redirectToCheckout() {
+    this.http.post('/api/checkout', {
+      items: this.cart.cartItems()
+    }).subscribe((res: any) => {
+      window.location.href = res.url;
+    });
+  }
 }
