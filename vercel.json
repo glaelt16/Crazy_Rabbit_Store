@@ -1,7 +1,7 @@
 {
   "functions": {
     "api/checkout.ts": {
-      "runtime": "nodejs18.x" 
+      "runtime": "@vercel/python@5.0.4" 
     }
   }
 
