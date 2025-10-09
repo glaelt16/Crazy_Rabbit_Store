@@ -30,6 +30,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       cancel_url: `${req.headers.origin}/cancel`,
     });
 
+
+    console.log("✅ Stripe session created:", session.url);
+
     return res.status(200).json({ url: session.url });
   } catch (err: any) {
     console.error('❌ Stripe Checkout Error:', err);
