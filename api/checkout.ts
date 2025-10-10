@@ -1,11 +1,15 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+if (!stripeSecretKey) {
+  throw new Error('STRIPE_SECRET_KEY environment variable is not set');
+}
+const stripe = new Stripe(stripeSecretKey, {
   apiVersion: '2025-08-27.basil',
 });
 
-export default async function handler(req, res) {
+export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
@@ -13,7 +17,13 @@ export default async function handler(req, res) {
   try {
     const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
 
-    const lineItems = body.items.map((item) => ({
+    interface Item {
+      name: string;
+      price: number;
+      qty: number;
+    }
+
+    const lineItems = (body.items as Item[]).map((item: Item) => ({
       price_data: {
         currency: 'usd',
         product_data: { name: item.name },
@@ -36,6 +46,7 @@ export default async function handler(req, res) {
     return res.status(200).json({ url: session.url });
   } catch (err) {
     console.error('❌ Stripe Checkout Error:', err);
-    return res.status(500).json({ error: err.message });
+    const errorMessage = err instanceof Error ? err.message : 'An unknown error occurred';
+    return res.status(500).json({ error: errorMessage });
   }
 }
