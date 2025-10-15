@@ -5,9 +5,7 @@ const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 if (!stripeSecretKey) {
   throw new Error('STRIPE_SECRET_KEY environment variable is not set');
 }
-const stripe = new Stripe(stripeSecretKey, {
-  apiVersion: '2025-08-27.basil',
-});
+ const stripe = new Stripe(stripeSecretKey);
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
