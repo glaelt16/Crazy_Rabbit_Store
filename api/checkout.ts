@@ -47,9 +47,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     });
 
 
-    console.log("✅ Stripe session created:", session.url);
+    console.log("✅ Stripe session created:", session.id);
 
-    return res.status(200).json({ url: session.url });
+    return res.status(200).json({ id: session.id });
   } catch (err) {
     console.error('❌ Stripe Checkout Error:', err);
     const errorMessage = err instanceof Error ? err.message : 'An unknown error occurred';

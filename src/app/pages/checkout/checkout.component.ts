@@ -2,6 +2,18 @@ import { Component, inject } from '@angular/core';
 import { CartService } from '../../core/services/cart.service';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
+import { loadStripe, Stripe } from '@stripe/stripe-js';
+
+// Define interfaces for better type safety
+interface CartItem {
+  name: string;
+  price: number;
+  qty: number;
+}
+
+interface CheckoutResponse {
+  id: string;
+}
 
 @Component({
   selector: 'app-checkout',
@@ -12,10 +24,15 @@ import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http'
 export class CheckoutComponent {
   cart = inject(CartService);
   http = inject(HttpClient);
+  private stripePromise: Promise<Stripe | null>;
 
-  redirectToCheckout() {
-    // ✅ Map cart items to Stripe’s expected structure
-    const items = this.cart.cartItems().map((item: any) => ({
+  constructor() {
+    // Initialize Stripe.js with the public key
+    this.stripePromise = loadStripe('pk_live_51SAGlHD95CW6rARxWbjDDqV3uzMO5s3pFhqVTbuWLJflwLWGFe1ZNCFYI9d3Rg2kPlg0mhcHR5bV18s4DFqwLBvr00rHjVDENs');
+  }
+
+  async redirectToCheckout() {
+    const items: CartItem[] = this.cart.cartItems().map((item: any) => ({
       name: item.name,
       price: Number(item.price),
       qty: item.qty || 1,
@@ -23,13 +40,20 @@ export class CheckoutComponent {
 
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-    this.http.post('/api/checkout', { items }, { headers }).subscribe({
-      next: (res: any) => {
-        if (res?.url) {
-          window.location.href = res.url; // ✅ redirect to Stripe Checkout
+    this.http.post<CheckoutResponse>('/api/checkout', { items }, { headers }).subscribe({
+      next: async (res) => {
+        if (res?.id) {
+          const stripe = await this.stripePromise;
+          if (stripe) {
+            const { error } = await stripe.redirectToCheckout({ sessionId: res.id });
+            if (error) {
+              console.error('Stripe redirectToCheckout error:', error);
+              alert('Error: Could not redirect to Stripe.');
+            }
+          }
         } else {
           console.error('Unexpected response:', res);
-          alert('Error: Checkout URL not returned.');
+          alert('Error: Checkout Session ID not returned.');
         }
       },
       error: (err) => {
