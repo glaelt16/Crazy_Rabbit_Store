@@ -1,9 +1,5 @@
 {
-  "functions": {
-    "api/checkout.ts": {
-      "runtime": "@vercel/python@5.0.4" 
-    }
-  }
-
-
+  "buildCommand": "ng build --configuration production",
+  "outputDirectory": "dist/your-angular-app",
+  "framework": "angular"
 }
