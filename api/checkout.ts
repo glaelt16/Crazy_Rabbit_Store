@@ -1,8 +1,3 @@
-export const config = {
-  runtime: 'nodejs20.x'
-};
-
-
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import Stripe from 'stripe';
 
