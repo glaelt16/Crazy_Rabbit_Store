@@ -1,0 +1,21 @@
+<div class="modal-overlay" [class.hidden]="!modalService.isOpen$()">
+  <div class="modal-content">
+    <h2>Item Added to Cart</h2>
+    <div *ngIf="cartService.cartItems().length > 0; else emptyCart">
+      <ul>
+        <li *ngFor="let item of cartService.cartItems()">
+          {{ item.name }} - {{ item.price | currency }} x {{ item.qty }}
+        </li>
+      </ul>
+      <hr>
+      <p>Total: {{ cartService.total() | currency }}</p>
+    </div>
+    <ng-template #emptyCart>
+      <p>Your cart is empty.</p>
+    </ng-template>
+    <div class="modal-actions">
+      <button (click)="modalService.close()">Continue Shopping</button>
+      <a routerLink="/checkout" (click)="modalService.close()">Go to Checkout</a>
+    </div>
+  </div>
+</div>
