@@ -40,7 +40,7 @@ export class CheckoutComponent {
 
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-    this.http.post<CheckoutResponse>('/api/checkout', { items }, { headers }).subscribe({
+    this.http.post<CheckoutResponse>('http://localhost:4000/checkout', { items }, { headers }).subscribe({
       next: async (res) => {
         if (res?.id) {
           const stripe = await this.stripePromise;
