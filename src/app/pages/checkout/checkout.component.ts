@@ -3,6 +3,7 @@ import { CartService } from '../../core/services/cart.service';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { loadStripe, Stripe } from '@stripe/stripe-js';
+import { environment } from '../../../environments/environment';
 
 // Define interfaces for better type safety
 interface CartItem {
@@ -40,7 +41,7 @@ export class CheckoutComponent {
 
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-    this.http.post<CheckoutResponse>('http://localhost:4000/checkout', { items }, { headers }).subscribe({
+    this.http.post<CheckoutResponse>(`${environment.apiUrl}/checkout`, { items }, { headers }).subscribe({
       next: async (res) => {
         if (res?.id) {
           const stripe = await this.stripePromise;
