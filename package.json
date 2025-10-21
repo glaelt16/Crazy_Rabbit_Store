@@ -54,19 +54,5 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "puppeteer": "^24.25.0",
     "typescript": "~5.9.2"
-  },
-  "description": "This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.1.",
-  "main": "karma.conf.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/glaelt16/Crazy_Rabbit_Store.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/glaelt16/Crazy_Rabbit_Store/issues"
-  },
-  "homepage": "https://github.com/glaelt16/Crazy_Rabbit_Store#readme"
+  }
 }
