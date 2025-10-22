@@ -10,7 +10,7 @@ if (!stripeSecretKey) {
   throw new Error('STRIPE_SECRET_KEY environment variable is not set');
 }
 const stripe = new Stripe(stripeSecretKey, {
-  apiVersion: '2025-09-30.clover',
+  apiVersion: '2024-09-30',
 });
 
 const app = express();
