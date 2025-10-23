@@ -1,21 +1,26 @@
 {
   "version": 2,
-  "functions": {
-    "api/index.ts": {
-      "runtime": "nodejs20.x",
-      "includeFiles": "express-api/src/**"
+  "builds": [
+    {
+      "src": "express-api/src/index.ts",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "angular.json",
+      "use": "@vercel/angular",
+      "options": {
+        "outputPath": "dist/apparel-store/browser"
+      }
     }
-  },
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist/apparel-store/browser",
+  ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/api/index.ts"
+      "dest": "/express-api/src/index.ts"
     },
     {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "/angular.json"
     }
   ]
 }
