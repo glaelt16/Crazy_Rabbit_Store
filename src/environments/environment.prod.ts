@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: '/api'
+  apiUrl: 'https://buy.stripe.com/aFa28raEL7bUh2xgNydMI00'
 };
