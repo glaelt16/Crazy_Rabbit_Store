@@ -10,7 +10,7 @@ if (!stripeSecretKey) {
   throw new Error('STRIPE_SECRET_KEY environment variable is not set');
 }
 const stripe = new Stripe(stripeSecretKey, {
-  apiVersion: '2025-08-27.basil',
+  apiVersion: '2024-06-20',
 });
 
 const app = express();
@@ -25,7 +25,7 @@ interface Item {
   qty: number;
 }
 
-app.post('/checkout', async (req: Request, res: Response) => {
+app.post('/api/checkout', async (req: Request, res: Response) => {
   try {
     const { items } = req.body;
 
