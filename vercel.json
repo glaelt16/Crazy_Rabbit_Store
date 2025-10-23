@@ -20,7 +20,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/angular.json"
+      "dest": "/index.html"
     }
   ]
 }
