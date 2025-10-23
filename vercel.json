@@ -7,10 +7,7 @@
     },
     {
       "src": "angular.json",
-      "use": "@vercel/angular",
-      "options": {
-        "outputPath": "dist/apparel-store/browser"
-      }
+      "use": "@vercel/angular"
     }
   ],
   "routes": [
