@@ -50,6 +50,9 @@ app.post('/api/checkout', async (req: Request, res: Response) => {
       mode: 'payment',
       success_url: `${origin}/success`,
       cancel_url: `${origin}/cancel`,
+      shipping_address_collection: {
+        allowed_countries: ['US', 'CA'],
+      },
     });
 
     console.log("✅ Stripe session created:", session.id);
