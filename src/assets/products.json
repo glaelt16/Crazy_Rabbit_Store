@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "name": "Crazy Rabbit. Hoddie",
+    "name": "Crazy Rabbit. Hoodie",
     "price": 39.99,
     "image": "https://m.media-amazon.com/images/I/B1mEhjGJ2nL._CLa%7C2140%2C2000%7CB1PzzjkzsaL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png",
     "description": "100% cotton.",
@@ -17,7 +17,7 @@
   },
   {
     "id": 3,
-    "name": "Egg and Platains Zip Hoodie",
+    "name": "Eggs and Platain Zip Hoodie",
     "price": 33.99,
     "image": "https://m.media-amazon.com/images/I/B1On3Y+j0-L._CLa%7C2140%2C2000%7C613kXh8rWuL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png",
     "description": "100% cotton.",
