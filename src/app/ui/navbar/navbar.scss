@@ -9,6 +9,7 @@
   padding: 0.5rem;
   background-color: #4068ec;
   color: #fff;
+  position: relative;
 }
 
 .navbar-brand {
@@ -95,6 +96,7 @@
     left: 0;
     background-color: #111;
     padding: 1rem;
+    box-sizing: border-box;
 
     &.show {
       display: flex;
