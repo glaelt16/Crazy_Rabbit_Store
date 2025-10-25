@@ -35,16 +35,30 @@ app.post('/api/checkout', async (req: Request, res: Response) => {
       return res.status(400).json({ error: 'Invalid items array' });
     }
 
-    const lineItems = (items as Item[]).map((item: Item) => ({
-      price_data: {
-        currency: 'usd',
-        product_data: {
-          name: `${item.name}${item.color ? ` - ${item.color.name}` : ''}${item.size ? ` - ${item.size}` : ''}`,
+    const lineItems = (items as Item[]).map((item: Item) => {
+      const productData: Stripe.Checkout.SessionCreateParams.LineItem.PriceData.ProductData = {
+        name: item.name,
+      };
+
+      if (item.color || item.size) {
+        productData.metadata = {};
+        if (item.color) {
+          productData.metadata.color = item.color.name;
+        }
+        if (item.size) {
+          productData.metadata.size = item.size;
+        }
+      }
+
+      return {
+        price_data: {
+          currency: 'usd',
+          product_data: productData,
+          unit_amount: Math.round(item.price * 100),
         },
-        unit_amount: Math.round(item.price * 100),
-      },
-      quantity: item.qty,
-    }));
+        quantity: item.qty,
+      };
+    });
 
     const origin = req.headers.origin || process.env['BASE_URL'] || 'https://crzyrabbit.com';
 
