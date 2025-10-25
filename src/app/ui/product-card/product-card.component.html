@@ -3,6 +3,14 @@
   <h3>{{ product.name }}</h3>
   <p class="price">${{ product.price }}</p>
   <p class="desc">{{ product.description }}</p>
+  <div class="size-selector" *ngIf="product.sizes">
+    <select [(ngModel)]="selectedSize">
+      <option value="">Select size</option>
+      <option *ngFor="let size of product.sizes" [value]="size">
+        {{ size }}
+      </option>
+    </select>
+  </div>
   <div class="buttons">
     <button (click)="addToCart()">Add to cart</button>
     <a
