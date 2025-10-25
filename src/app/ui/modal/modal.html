@@ -4,7 +4,8 @@
     <div *ngIf="cartService.cartItems().length > 0; else emptyCart">
       <ul>
         <li *ngFor="let item of cartService.cartItems()">
-          {{ item.name }} - {{ item.price | currency }} x {{ item.qty }}
+          {{ item.name }} <span *ngIf="item.size">({{ item.size }})</span> - {{ item.price | currency }} x {{ item.qty }}
+          <button (click)="cartService.remove(item.id, item.size)">Remove</button>
         </li>
       </ul>
       <hr>
