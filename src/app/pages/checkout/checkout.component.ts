@@ -10,6 +10,7 @@ interface CartItem {
   name: string;
   price: number;
   qty: number;
+  size?: string;
 }
 
 interface CheckoutResponse {
@@ -37,6 +38,7 @@ export class CheckoutComponent {
       name: item.name,
       price: Number(item.price),
       qty: item.qty || 1,
+      size: item.size,
     }));
 
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
