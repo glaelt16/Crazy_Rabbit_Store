@@ -6,7 +6,17 @@
     "image": "https://m.media-amazon.com/images/I/B1mEhjGJ2nL._CLa%7C2140%2C2000%7CB1PzzjkzsaL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png",
     "description": "100% cotton.",
     "amazonLink": "https://amzn.to/4nskHmq",
-    "sizes": ["S", "M", "L"]
+    "sizes": ["S", "M", "L"],
+    "colors": [
+      {
+        "name": "Black",
+        "image": "https://m.media-amazon.com/images/I/B1mEhjGJ2nL._CLa%7C2140%2C2000%7CB1PzzjkzsaL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png"
+      },
+      {
+        "name": "Blue",
+        "image": "https://m.media-amazon.com/images/I/91XFGdO22wL._CLa%7C2140%2C2000%7C813bWkaYkvL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png"
+      }
+    ]
   },
   {
     "id": 2,

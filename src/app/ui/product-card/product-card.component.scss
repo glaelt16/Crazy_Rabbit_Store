@@ -76,3 +76,23 @@ a.amazon-link {
 a.amazon-link:hover {
   background-color: #cc7a00;
 }
+
+.color-selector {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.color-option {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.color-option.selected {
+  border-color: #007bff;
+}

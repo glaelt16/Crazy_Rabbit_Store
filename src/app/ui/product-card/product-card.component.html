@@ -1,8 +1,17 @@
 <div class="card">
-  <img [src]="product.image" [alt]="product.name" />
+  <img [src]="displayImage" [alt]="product.name" />
   <h3>{{ product.name }}</h3>
   <p class="price">${{ product.price }}</p>
   <p class="desc">{{ product.description }}</p>
+  <div class="color-selector" *ngIf="product.colors">
+    <span
+      *ngFor="let color of product.colors"
+      class="color-option"
+      [style.background-color]="color.name.toLowerCase()"
+      (click)="selectColor(color)"
+      [class.selected]="color === selectedColor"
+    ></span>
+  </div>
   <div class="size-selector" *ngIf="product.sizes">
     <select [(ngModel)]="selectedSize">
       <option value="">Select size</option>
