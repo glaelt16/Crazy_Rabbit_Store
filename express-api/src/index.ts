@@ -40,14 +40,15 @@ app.post('/api/checkout', async (req: Request, res: Response) => {
         name: item.name,
       };
 
-      if (item.color || item.size) {
-        productData.metadata = {};
-        if (item.color) {
-          productData.metadata.color = item.color.name;
-        }
-        if (item.size) {
-          productData.metadata.size = item.size;
-        }
+      const descriptionParts = [];
+      if (item.color) {
+        descriptionParts.push(`Color: ${item.color.name}`);
+      }
+      if (item.size) {
+        descriptionParts.push(`Size: ${item.size}`);
+      }
+      if (descriptionParts.length > 0) {
+        productData.description = descriptionParts.join(' - ');
       }
 
       return {
