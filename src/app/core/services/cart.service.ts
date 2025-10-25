@@ -1,9 +1,10 @@
 import { Injectable, signal, computed } from '@angular/core';
-import { Product } from '../models/product.model';
+import { Product, ProductColor } from '../models/product.model';
 
 export interface CartItem extends Product {
   qty: number;
   size?: string;
+  color?: ProductColor;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -14,12 +15,14 @@ export class CartService {
   readonly total = computed(() => this.items().reduce((sum, i) => sum + i.price * i.qty, 0));
   readonly count = computed(() => this.items().reduce((sum, i) => sum + i.qty, 0));
 
-  add(product: Product & { size?: string }) {
-    const existing = this.items().find(i => i.id === product.id && i.size === product.size);
+  add(product: Product & { size?: string; color?: ProductColor }) {
+    const existing = this.items().find(i => i.id === product.id && i.size === product.size && i.color === product.color);
     if (existing) {
       this.items.update(list =>
         list.map(i =>
-          i.id === product.id && i.size === product.size ? { ...i, qty: i.qty + 1 } : i
+          i.id === product.id && i.size === product.size && i.color === product.color
+            ? { ...i, qty: i.qty + 1 }
+            : i
         )
       );
     } else {
@@ -27,9 +30,9 @@ export class CartService {
     }
   }
 
-  remove(id: number, size?: string) {
+  remove(id: number, size?: string, color?: ProductColor) {
     this.items.update(list =>
-      list.filter(i => !(i.id === id && i.size === size))
+      list.filter(i => !(i.id === id && i.size === size && i.color === color))
     );
   }
 

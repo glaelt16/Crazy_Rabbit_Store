@@ -6,11 +6,15 @@ import { loadStripe, Stripe } from '@stripe/stripe-js';
 import { environment } from '../../../environments/environment';
 
 // Define interfaces for better type safety
+import { ProductColor } from '../../core/models/product.model';
+
+// Define interfaces for better type safety
 interface CartItem {
   name: string;
   price: number;
   qty: number;
   size?: string;
+  color?: ProductColor;
 }
 
 interface CheckoutResponse {
@@ -39,6 +43,7 @@ export class CheckoutComponent {
       price: Number(item.price),
       qty: item.qty || 1,
       size: item.size,
+      color: item.color,
     }));
 
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });

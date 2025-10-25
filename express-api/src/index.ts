@@ -24,6 +24,7 @@ interface Item {
   price: number;
   qty: number;
   size?: string;
+  color?: { name: string };
 }
 
 app.post('/api/checkout', async (req: Request, res: Response) => {
@@ -38,7 +39,7 @@ app.post('/api/checkout', async (req: Request, res: Response) => {
       price_data: {
         currency: 'usd',
         product_data: {
-          name: item.size ? `${item.name} - ${item.size}` : item.name,
+          name: `${item.name}${item.color ? ` - ${item.color.name}` : ''}${item.size ? ` - ${item.size}` : ''}`,
         },
         unit_amount: Math.round(item.price * 100),
       },
