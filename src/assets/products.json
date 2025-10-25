@@ -22,7 +22,7 @@
       },
       {
         "name": "Gray",
-        "image": "https://www.amazon.com/dp/B0FN1GK47Q?customId=B0CGBLJ462&customizationToken=MC_Assembly_1%23B0CGBLJ462&th=1&psc=1"
+        "image": "https://m.media-amazon.com/images/I/B1GA4eZwB4L._CLa%7C2140%2C2000%7CB1PzzjkzsaL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png"
       },
       {
         "name": "Red",
@@ -39,6 +39,10 @@
     "amazonLink": "https://amzn.to/3I58QMa",
     "sizes": ["S", "M", "L"],
     "colors": [
+      {
+        "name": "Black",
+        "image": "https://m.media-amazon.com/images/I/B1pppR4gVKL._CLa%7C2140%2C2000%7C91QAKyibK4L.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png"
+      },
       {
         "name": "Blue",
         "image": "https://m.media-amazon.com/images/I/B1fRqw30NVL._CLa%7C2140%2C2000%7C91QAKyibK4L.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png"
@@ -67,12 +71,12 @@
     "sizes": ["S", "M", "L"],
     "colors": [
       {
-        "name": "Blue",
-        "image": "https://m.media-amazon.com/images/I/B1+0DsVJ9SL._CLa%7C2140%2C2000%7C613kXh8rWuL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png"
+        "name": "Black",
+        "image": "https://m.media-amazon.com/images/I/B1On3Y+j0-L._CLa%7C2140%2C2000%7C613kXh8rWuL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png"
       },
       {
-        "name": "Gray",
-        "image": "https://m.media-amazon.com/images/I/B1EWx17iUcL._CLa%7C2140%2C2000%7C91QAKyibK4L.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png"
+        "name": "Blue",
+        "image": "https://m.media-amazon.com/images/I/B1+0DsVJ9SL._CLa%7C2140%2C2000%7C613kXh8rWuL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png"
       },
       {
         "name": "Green",
