@@ -23,6 +23,7 @@ interface Item {
   name: string;
   price: number;
   qty: number;
+  size?: string;
 }
 
 app.post('/api/checkout', async (req: Request, res: Response) => {
@@ -36,7 +37,9 @@ app.post('/api/checkout', async (req: Request, res: Response) => {
     const lineItems = (items as Item[]).map((item: Item) => ({
       price_data: {
         currency: 'usd',
-        product_data: { name: item.name },
+        product_data: {
+          name: item.size ? `${item.name} - ${item.size}` : item.name,
+        },
         unit_amount: Math.round(item.price * 100),
       },
       quantity: item.qty,
