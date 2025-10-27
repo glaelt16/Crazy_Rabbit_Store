@@ -35,6 +35,7 @@ app.post('/api/checkout', async (req: Request, res: Response) => {
       return res.status(400).json({ error: 'Invalid items array' });
     }
 
+    // Map items to Stripe line items format
     const lineItems = (items as Item[]).map((item: Item) => {
       const productData: Stripe.Checkout.SessionCreateParams.LineItem.PriceData.ProductData = {
         name: item.name,
@@ -62,6 +63,24 @@ app.post('/api/checkout', async (req: Request, res: Response) => {
         quantity: item.qty,
       };
     });
+
+    // Calculate subtotal and tax
+    const subtotal = (items as Item[]).reduce((acc, item) => acc + item.price * (item.qty || 1), 0);
+    const taxAmount = subtotal * 0.07; // 7% sales tax
+
+    // Add tax as a separate line item if it's greater than 0
+    if (taxAmount > 0) {
+      lineItems.push({
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: 'Sales Tax',
+          },
+          unit_amount: Math.round(taxAmount * 100),
+        },
+        quantity: 1,
+      });
+    }
 
     const origin = req.headers.origin || process.env['BASE_URL'] || 'https://crzyrabbit.com';
 

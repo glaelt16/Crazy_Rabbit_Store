@@ -1,3 +1,11 @@
 <h1>Checkout</h1>
-<p>Review total: <strong>{{ cart.total() | currency:'USD' }}</strong></p>
-<p><button (click)="redirectToCheckout()">Pay securely</button></p>
+
+<div>
+  <h3>Order Summary</h3>
+  <p>Subtotal: <strong>{{ subtotal() | currency:'USD' }}</strong></p>
+  <p>Sales Tax (7%): <strong>{{ tax() | currency:'USD' }}</strong></p>
+  <hr>
+  <p>Total: <strong>{{ total() | currency:'USD' }}</strong></p>
+</div>
+
+<p><button (click)="redirectToCheckout()">Pay securely with Stripe</button></p>
