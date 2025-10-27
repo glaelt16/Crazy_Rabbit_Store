@@ -10,7 +10,7 @@ if (!stripeSecretKey) {
   throw new Error('STRIPE_SECRET_KEY environment variable is not set');
 }
 const stripe = new Stripe(stripeSecretKey, {
-  apiVersion: '2025-09-30.clover',
+  apiVersion: '2024-06-20',
 });
 
 const app = express();
@@ -38,6 +38,7 @@ app.post('/api/checkout', async (req: Request, res: Response) => {
     const lineItems = (items as Item[]).map((item: Item) => {
       const productData: Stripe.Checkout.SessionCreateParams.LineItem.PriceData.ProductData = {
         name: item.name,
+        tax_code: 'txcd_99999999',
       };
 
       const descriptionParts = [];
@@ -56,6 +57,7 @@ app.post('/api/checkout', async (req: Request, res: Response) => {
           currency: 'usd',
           product_data: productData,
           unit_amount: Math.round(item.price * 100),
+          tax_behavior: 'exclusive',
         },
         quantity: item.qty,
       };
