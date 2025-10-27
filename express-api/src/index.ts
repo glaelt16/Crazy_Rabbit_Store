@@ -10,7 +10,7 @@ if (!stripeSecretKey) {
   throw new Error('STRIPE_SECRET_KEY environment variable is not set');
 }
 const stripe = new Stripe(stripeSecretKey, {
-  apiVersion: '2025-08-27.basil',
+  apiVersion: '2025-09-30.clover',
 });
 
 const app = express();
@@ -71,6 +71,9 @@ app.post('/api/checkout', async (req: Request, res: Response) => {
       cancel_url: `${origin}/cancel`,
       shipping_address_collection: {
         allowed_countries: ['US', 'CA'],
+      },
+      automatic_tax: {
+        enabled: true,
       },
     });
 
