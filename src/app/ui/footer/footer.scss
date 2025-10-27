@@ -1,0 +1,17 @@
+.footer-container {
+  text-align: center;
+  padding: 20px;
+}
+
+a {
+  margin: 0 10px;
+}
+
+svg {
+  fill: #333;
+  transition: fill 0.3s;
+}
+
+a:hover svg {
+  fill: #007bff;
+}
