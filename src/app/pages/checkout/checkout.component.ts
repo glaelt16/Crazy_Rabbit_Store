@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { CartService } from '../../core/services/cart.service';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
@@ -31,6 +31,11 @@ export class CheckoutComponent {
   cart = inject(CartService);
   http = inject(HttpClient);
   private stripePromise: Promise<Stripe | null>;
+
+  // Calculate subtotal, tax, and total using computed signals
+  subtotal = computed(() => this.cart.cartItems().reduce((acc, item) => acc + item.price * (item.qty || 1), 0));
+  tax = computed(() => this.subtotal() * 0.07); // 7% tax
+  total = computed(() => this.subtotal() + this.tax());
 
   constructor() {
     // Initialize Stripe.js with the public key

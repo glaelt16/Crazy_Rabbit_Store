@@ -44,3 +44,9 @@ Thumbs.db
 
 # Environment variables
 .env
+
+# Build artifacts
+/express-api/dist
+
+# Log files
+/server.log
