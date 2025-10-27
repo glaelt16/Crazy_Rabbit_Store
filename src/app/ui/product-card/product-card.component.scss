@@ -6,7 +6,7 @@
 .card {
   display: block;
   border-radius: 12px;
-  overflow: hidden; 
+  overflow: hidden;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   padding: 1rem;
@@ -14,7 +14,7 @@
   background-color: #fff; /* Add a background color to prevent transparency */
   width: 300px; /* Fixed width */
   max-width: 100%; /* Ensures responsiveness within parent container */
-  height: auto; 
+  height: auto;
 }
 
 .card:hover {
@@ -22,11 +22,35 @@
   box-shadow: 0 8px 12px rgba(0,0,0,0.15);
 }
 
-.card img {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: contain;
-  border-radius: 15px;
+.image-gallery {
+  position: relative;
+  margin-bottom: 16px;
+
+  img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    border-radius: 15px;
+  }
+
+  .prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+  }
+
+  .prev {
+    left: 0;
+  }
+
+  .next {
+    right: 0;
+  }
 }
 
 .price {

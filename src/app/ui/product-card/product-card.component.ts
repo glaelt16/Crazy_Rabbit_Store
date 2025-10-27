@@ -18,18 +18,20 @@ export class ProductCardComponent implements OnInit {
   modalService = inject(ModalService);
   selectedSize: string = '';
   selectedColor!: ProductColor;
-  displayImage!: string;
+  currentImageIndex = 0;
 
   ngOnInit() {
     if (this.product.colors && this.product.colors.length > 0) {
       this.selectedColor = this.product.colors[0];
     }
-    this.displayImage = this.product.image;
   }
 
   selectColor(color: ProductColor) {
     this.selectedColor = color;
-    this.displayImage = color.image;
+    const imageIndex = this.product.images.indexOf(color.image);
+    if (imageIndex !== -1) {
+      this.currentImageIndex = imageIndex;
+    }
   }
 
   addToCart() {
@@ -39,5 +41,13 @@ export class ProductCardComponent implements OnInit {
     }
     this.cartService.add({ ...this.product, size: this.selectedSize, color: this.selectedColor });
     this.modalService.open();
+  }
+
+  nextImage() {
+    this.currentImageIndex = (this.currentImageIndex + 1) % this.product.images.length;
+  }
+
+  prevImage() {
+    this.currentImageIndex = (this.currentImageIndex - 1 + this.product.images.length) % this.product.images.length;
   }
 }
