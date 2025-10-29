@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import Stripe from 'stripe';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import twilio from 'twilio';
 
 dotenv.config();
 
@@ -12,6 +13,17 @@ if (!stripeSecretKey) {
 const stripe = new Stripe(stripeSecretKey, {
   apiVersion: '2024-06-20',
 });
+
+// Twilio Configuration
+const twilioAccountSid = process.env['TWILIO_ACCOUNT_SID'];
+const twilioAuthToken = process.env['TWILIO_AUTH_TOKEN'];
+const twilioPhoneNumber = process.env['TWILIO_PHONE_NUMBER'];
+
+if (!twilioAccountSid || !twilioAuthToken || !twilioPhoneNumber) {
+  throw new Error('Twilio environment variables are not fully set');
+}
+
+const twilioClient = twilio(twilioAccountSid, twilioAuthToken);
 
 const app = express();
 const port = process.env['PORT'] || 4000;
@@ -82,6 +94,20 @@ app.post('/api/checkout', async (req: Request, res: Response) => {
     });
 
     console.log("✅ Stripe session created:", session.id);
+
+    // Send SMS notification
+    try {
+      const message = await twilioClient.messages.create({
+        body: `New order received! Total: $${(session.amount_total! / 100).toFixed(2)}.`,
+        from: twilioPhoneNumber,
+        to: '+13056074557'
+      });
+      console.log("✅ SMS notification sent:", message.sid);
+    } catch (smsError) {
+      console.error('❌ Error sending SMS:', smsError);
+      // Do not block the checkout flow if SMS fails
+    }
+
     return res.status(200).json({ id: session.id });
 
   } catch (err) {
