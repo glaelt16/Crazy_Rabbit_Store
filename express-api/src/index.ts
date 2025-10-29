@@ -117,6 +117,26 @@ app.post('/api/checkout', async (req: Request, res: Response) => {
   }
 });
 
+app.post('/api/notify-amazon-click', async (req: Request, res: Response) => {
+  try {
+    const { productName } = req.body;
+    const messageBody = productName
+      ? `An Amazon link for the product "${productName}" was just clicked.`
+      : 'An Amazon link was just clicked.';
+
+    const message = await twilioClient.messages.create({
+      body: messageBody,
+      from: twilioPhoneNumber,
+      to: '+13056074557'
+    });
+    console.log("✅ SMS for Amazon link click sent:", message.sid);
+    return res.status(200).json({ success: true });
+  } catch (err) {
+    console.error('❌ Error sending Amazon link SMS:', err);
+    return res.status(500).json({ error: 'Failed to send notification' });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
