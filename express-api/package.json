@@ -3,7 +3,8 @@
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
-    "stripe": "^19.1.0"
+    "stripe": "^19.1.0",
+    "twilio": "^5.10.4"
   },
   "devDependencies": {
     "@types/express": "^5.0.3",
