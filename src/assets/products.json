@@ -78,7 +78,7 @@
   {
     "id": 3,
     "name": "Eggs and Platain Zip Hoodie",
-    "price": 33.99,
+    "price": 37.99,
     "images": [
       "https://m.media-amazon.com/images/I/B1On3Y+j0-L._CLa%7C2140%2C2000%7C613kXh8rWuL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png",
       "https://m.media-amazon.com/images/I/B1+0DsVJ9SL._CLa%7C2140%2C2000%7C613kXh8rWuL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png",
@@ -101,5 +101,64 @@
         "image": "https://m.media-amazon.com/images/I/C1V4c7YYwBL._CLa%7C2140%2C2000%7C613kXh8rWuL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png"
       }
     ]
+  },
+ {
+    "id": 4,
+    "name": "Crazy Rabbit. Premium Tri-Blend T-Shirt",
+    "price": 24.99,
+    "images": [
+      "https://m.media-amazon.com/images/I/91czMjHTZJL._CLa%7C2140%2C2000%7C81%2BqDhtobrL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png",
+      "https://m.media-amazon.com/images/I/A1a-Sz4BdPL._CLa%7C2140%2C2000%7C81%2BqDhtobrL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png",
+      "https://m.media-amazon.com/images/I/A1I5LyH33rL._CLa%7C2140%2C2000%7C81%2BqDhtobrL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png",
+      "https://m.media-amazon.com/images/I/A1+LteF7gBL._CLa%7C2140%2C2000%7C81%2BqDhtobrL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png"
+    ],
+    "description": "100% cotton.",
+    "amazonLink": "https://amzn.to/3JACiu0",
+    "sizes": ["S", "M", "L"],
+    "colors": [
+      {
+        "name": "Black",
+        "image": "https://m.media-amazon.com/images/I/91czMjHTZJL._CLa%7C2140%2C2000%7C81%2BqDhtobrL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png"
+      },
+      {
+        "name": "Blue",
+        "image": "https://m.media-amazon.com/images/I/A1a-Sz4BdPL._CLa%7C2140%2C2000%7C81%2BqDhtobrL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png"
+      },
+      {
+        "name": "Blue",
+        "image": "https://m.media-amazon.com/images/I/A1I5LyH33rL._CLa%7C2140%2C2000%7C81%2BqDhtobrL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png"
+      },
+      {
+        "name": "Gray",
+        "image": "https://m.media-amazon.com/images/I/A1+LteF7gBL._CLa%7C2140%2C2000%7C81%2BqDhtobrL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png"
+      }
+    ]
+  },
+
+   {
+    "id": 5,
+    "name": "Egg and Platains Pullover Hoodie",
+    "price": 35.99,
+    "images": [
+      "https://m.media-amazon.com/images/I/B1mEhjGJ2nL._CLa%7C2140%2C2000%7CB1qeqUfuDpL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png",
+      "https://m.media-amazon.com/images/I/B1D6UUCtZNL._CLa%7C2140%2C2000%7CB1qeqUfuDpL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png"
+
+    ],
+    "description": "100% cotton.",
+    "amazonLink": "https://amzn.to/48jF94o",
+    "sizes": ["S", "M", "L"],
+    "colors": [
+      {
+        "name": "Black",
+        "image": "https://m.media-amazon.com/images/I/B1mEhjGJ2nL._CLa%7C2140%2C2000%7CB1qeqUfuDpL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png"
+      },
+      {
+        "name": "Blue",
+        "image": "https://m.media-amazon.com/images/I/B1D6UUCtZNL._CLa%7C2140%2C2000%7CB1qeqUfuDpL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png"
+      }
+    
+    ]
   }
+
+   
 ]
