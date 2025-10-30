@@ -39,6 +39,7 @@
     "rxjs": "~7.8.0",
     "stripe": "^18.5.0",
     "tslib": "^2.3.0",
+    "twilio": "^5.10.4",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
@@ -47,6 +48,7 @@
     "@angular/compiler-cli": "^20.2.0",
     "@types/dotenv": "^6.1.1",
     "@types/jasmine": "~5.1.0",
+    "@types/twilio": "^3.19.2",
     "@vercel/node": "^2.15.10",
     "jasmine-core": "~5.9.0",
     "karma": "~6.4.0",
