@@ -4,4 +4,10 @@
   <a routerLink="/products" class="btn">Go to Products</a>
 </div>
 
+<div class="products-section">
+  <h2>Our Products</h2>
+  <div class="grid">
+    <app-product-card *ngFor="let p of products$ | async" [product]="p" />
+  </div>
+</div>
 
