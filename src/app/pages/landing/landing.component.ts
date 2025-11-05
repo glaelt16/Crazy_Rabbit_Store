@@ -1,14 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, inject, HostListener, ElementRef } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { ProductService } from '../../core/services/product.service';
+import { ProductCardComponent } from '../../ui/product-card/product-card.component';
+import { CommonModule, NgFor, AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-landing',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, CommonModule, NgFor, AsyncPipe, ProductCardComponent],
   templateUrl: './landing.html',
-  styleUrl: './landing.scss',
-  
+  styleUrls: ['./landing.scss'],
 })
 export class LandingComponent {
-  defaultImage: string = '../src/assets/CrazyRabbit.png';
+  private productService = inject(ProductService);
+  products$ = this.productService.getAll();
+
+  constructor(private el: ElementRef) {}
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const componentPosition = this.el.nativeElement.querySelector('.products-section').offsetTop;
+    const scrollPosition = window.pageYOffset + window.innerHeight;
+
+    if (scrollPosition > componentPosition) {
+      this.el.nativeElement.querySelector('.products-section').classList.add('visible');
+    }
+  }
 }
