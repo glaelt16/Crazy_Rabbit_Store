@@ -23,4 +23,11 @@
     </div>
     <button type="submit" [disabled]="!contactForm.form.valid">Submit</button>
   </form>
+
+  <div class="modal-overlay" *ngIf="isModalVisible">
+    <div class="modal-content">
+      <p>email sent</p>
+      <button (click)="hideModal()">Close</button>
+    </div>
+  </div>
 </div>

@@ -11,6 +11,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   styleUrl: './contact.scss'
 })
 export class ContactComponent {
+  isModalVisible = false;
+
   constructor(private http: HttpClient) {}
 
   onSubmit(form: any) {
@@ -18,10 +20,15 @@ export class ContactComponent {
       (response) => {
         console.log('Email sent successfully', response);
         form.reset();
+        this.isModalVisible = true;
       },
       (error) => {
         console.error('Error sending email', error);
       }
     );
+  }
+
+  hideModal() {
+    this.isModalVisible = false;
   }
 }
