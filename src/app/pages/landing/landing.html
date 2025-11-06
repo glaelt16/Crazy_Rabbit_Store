@@ -1,7 +1,6 @@
 <div class="landing-container"> 
   <img src="/assets/images/CrazyRabbit.png" alt="Crazy Rabbit Logo" class="logo">
   <h1>Welcome to Crazy Rabbit Store!</h1>
-  <a routerLink="/products" class="btn">Go to Products</a>
 </div>
 
 <div class="products-section">
@@ -9,5 +8,6 @@
   <div class="grid">
     <app-product-card *ngFor="let p of products$ | async" [product]="p" />
   </div>
+  <a routerLink="/products" class="btn">Go to Products</a>
 </div>
 
