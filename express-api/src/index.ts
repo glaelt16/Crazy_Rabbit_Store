@@ -3,6 +3,8 @@ import Stripe from 'stripe';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import twilio from 'twilio';
+import nodemailer from 'nodemailer';
+import bodyParser from 'body-parser';
 
 dotenv.config();
 
@@ -142,6 +144,35 @@ app.post('/api/notify-amazon-click', async (req: Request, res: Response) => {
   } catch (err) {
     console.error('❌ Error sending Amazon link SMS:', err);
     return res.status(500).json({ error: 'Failed to send notification' });
+  }
+});
+
+app.use(bodyParser.json());
+
+app.post('/api/contact', async (req: Request, res: Response) => {
+  const { name, lastName, orderNumber, email, description } = req.body;
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_APP_PASSWORD,
+    },
+  });
+
+  const mailOptions = {
+    from: email,
+    to: 'crazyrabbitapparel@gmail.com',
+    subject: `Contact Form Submission from ${name} ${lastName}`,
+    text: `Name: ${name} ${lastName}\nOrder Number: ${orderNumber}\nEmail: ${email}\nDescription: ${description}`,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    res.status(200).send('Email sent successfully');
+  } catch (error) {
+    console.error('Error sending email:', error);
+    res.status(500).send('Error sending email');
   }
 });
 

@@ -1,0 +1,26 @@
+<div class="contact-container">
+  <h2>Contact Us</h2>
+  <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" ngModel required>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input type="text" id="lastName" name="lastName" ngModel required>
+    </div>
+    <div class="form-group">
+      <label for="orderNumber">Order Number</label>
+      <input type="text" id="orderNumber" name="orderNumber" ngModel>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" ngModel required>
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" name="description" rows="5" ngModel required></textarea>
+    </div>
+    <button type="submit" [disabled]="!contactForm.form.valid">Submit</button>
+  </form>
+</div>
