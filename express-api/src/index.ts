@@ -9,11 +9,8 @@ import bodyParser from 'body-parser';
 dotenv.config();
 
 const stripeSecretKey = process.env['STRIPE_SECRET_KEY'];
-if (!stripeSecretKey) {
-  throw new Error('STRIPE_SECRET_KEY environment variable is not set');
-}
-const stripe = new Stripe(stripeSecretKey, {
-  apiVersion: '2025-08-27.basil',
+const stripe = new Stripe(stripeSecretKey!, {
+  apiVersion: '2024-06-20',
 });
 
 // Twilio Configuration
@@ -74,7 +71,7 @@ app.post('/api/checkout', async (req: Request, res: Response) => {
           currency: 'usd',
           product_data: productData,
           unit_amount: Math.round(item.price * 100),
-          tax_behavior: 'exclusive',
+          tax_behavior: 'exclusive' as Stripe.Checkout.SessionCreateParams.LineItem.PriceData.TaxBehavior,
         },
         quantity: item.qty,
       };
