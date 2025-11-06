@@ -3,11 +3,13 @@ import { HomeComponent } from './pages/home/home.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { LandingComponent } from './pages/landing/landing.component';
+import { ContactComponent } from './pages/contact/contact';
 
 export const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'products', component: HomeComponent },
   { path: 'cart', component: CartComponent },
   { path: 'checkout', component: CheckoutComponent },
+  { path: 'contact', component: ContactComponent },
   { path: '**', redirectTo: '' },
 ];
