@@ -16,13 +16,21 @@ export class LandingComponent {
 
   constructor(private el: ElementRef) {}
 
-  @HostListener('window:scroll', [])
-  onWindowScroll() {
-    const componentPosition = this.el.nativeElement.querySelector('.products-section').offsetTop;
-    const scrollPosition = window.pageYOffset + window.innerHeight;
+  ngAfterViewInit() {
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1,
+    };
 
-    if (scrollPosition > componentPosition) {
-      this.el.nativeElement.querySelector('.products-section').classList.add('visible');
-    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, options);
+
+    observer.observe(this.el.nativeElement.querySelector('.products-section'));
   }
 }
