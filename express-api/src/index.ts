@@ -146,6 +146,10 @@ app.post('/api/notify-amazon-click', async (req: Request, res: Response) => {
   }
 });
 
+app.get('/api/contact', (req: Request, res: Response) => {
+  res.status(405).json({ message: 'Method Not Allowed. Please use POST to submit the contact form.' });
+});
+
 app.post('/api/contact', async (req: Request, res: Response) => {
   try {
     const { name, lastName, orderNumber, email, description } = req.body;
