@@ -4,13 +4,15 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import twilio from 'twilio';
 import nodemailer from 'nodemailer';
-import bodyParser from 'body-parser';
 
 dotenv.config();
 
 const stripeSecretKey = process.env['STRIPE_SECRET_KEY'];
-const stripe = new Stripe(stripeSecretKey!, {
-  apiVersion: '2024-06-20',
+if (!stripeSecretKey) {
+  throw new Error('STRIPE_SECRET_KEY environment variable is not set');
+}
+const stripe = new Stripe(stripeSecretKey, {
+  apiVersion: '2025-08-27.basil',
 });
 
 // Twilio Configuration
@@ -71,7 +73,7 @@ app.post('/api/checkout', async (req: Request, res: Response) => {
           currency: 'usd',
           product_data: productData,
           unit_amount: Math.round(item.price * 100),
-          tax_behavior: 'exclusive' as Stripe.Checkout.SessionCreateParams.LineItem.PriceData.TaxBehavior,
+          tax_behavior: 'exclusive',
         },
         quantity: item.qty,
       };
@@ -144,32 +146,30 @@ app.post('/api/notify-amazon-click', async (req: Request, res: Response) => {
   }
 });
 
-app.use(bodyParser.json());
-
 app.post('/api/contact', async (req: Request, res: Response) => {
-  const { name, lastName, orderNumber, email, description } = req.body;
-
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_APP_PASSWORD,
-    },
-  });
-
-  const mailOptions = {
-    from: email,
-    to: 'crazyrabbitapparel@gmail.com',
-    subject: `Contact Form Submission from ${name} ${lastName}`,
-    text: `Name: ${name} ${lastName}\nOrder Number: ${orderNumber}\nEmail: ${email}\nDescription: ${description}`,
-  };
-
   try {
+    const { name, lastName, orderNumber, email, description } = req.body;
+
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env['GMAIL_USER'],
+        pass: process.env['GMAIL_APP_PASSWORD'],
+      },
+    });
+
+    const mailOptions = {
+      from: email,
+      to: 'crazyrabbitapparel@gmail.com',
+      subject: `Contact Form Submission from ${name} ${lastName}`,
+      text: `Name: ${name} ${lastName}\nOrder Number: ${orderNumber}\nEmail: ${email}\nDescription: ${description}`,
+    };
+
     await transporter.sendMail(mailOptions);
-    res.status(200).send('Email sent successfully');
+    res.status(200).json({ message: 'Email sent successfully' });
   } catch (error) {
     console.error('Error sending email:', error);
-    res.status(500).send('Error sending email');
+    res.status(500).json({ error: 'Failed to send email' });
   }
 });
 
