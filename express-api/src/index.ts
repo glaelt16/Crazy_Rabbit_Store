@@ -3,7 +3,7 @@ import Stripe from 'stripe';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import twilio from 'twilio';
-import nodemailer from 'nodemailer';
+import Mailjet from 'node-mailjet';
 
 dotenv.config();
 
@@ -151,25 +151,36 @@ app.get('/api/contact', (req: Request, res: Response) => {
 });
 
 app.post('/api/contact', async (req: Request, res: Response) => {
-  try {
-    const { name, lastName, orderNumber, email, description } = req.body;
-
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env['GMAIL_USER'],
-        pass: process.env['GMAIL_APP_PASSWORD'],
+  const mailjet = new Mailjet({
+    apiKey: process.env['MAILJET_API_KEY'],
+    apiSecret: process.env['MAILJET_API_SECRET'],
+  });
+  const { name, lastName, orderNumber, email, description } = req.body;
+  const request = mailjet.post('send', { version: 'v3.1' }).request({
+    Messages: [
+      {
+        From: {
+          Email: 'crazyrabbitapparel@gmail.com',
+          Name: 'Crazy Rabbit Apparel',
+        },
+        To: [
+          {
+            Email: 'crazyrabbitapparel@gmail.com',
+            Name: 'Crazy Rabbit Apparel',
+          },
+        ],
+        Subject: `Contact Form Submission from ${name} ${lastName}`,
+        TextPart: `Name: ${name} ${lastName}\nOrder Number: ${orderNumber}\nEmail: ${email}\nDescription: ${description}`,
+        ReplyTo: {
+          Email: email,
+          Name: `${name} ${lastName}`
+        }
       },
-    });
+    ],
+  });
 
-    const mailOptions = {
-      from: email,
-      to: 'crazyrabbitapparel@gmail.com',
-      subject: `Contact Form Submission from ${name} ${lastName}`,
-      text: `Name: ${name} ${lastName}\nOrder Number: ${orderNumber}\nEmail: ${email}\nDescription: ${description}`,
-    };
-
-    await transporter.sendMail(mailOptions);
+  try {
+    await request;
     res.status(200).json({ message: 'Email sent successfully' });
   } catch (error) {
     console.error('Error sending email:', error);
