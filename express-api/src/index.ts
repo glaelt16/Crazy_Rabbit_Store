@@ -160,12 +160,12 @@ app.post('/api/contact', async (req: Request, res: Response) => {
     Messages: [
       {
         From: {
-          Email: 'crazyrabbitapparel@gmail.com',
+          Email: 'crazy.rabbit.apparel@gmail.com',
           Name: 'Crazy Rabbit Apparel',
         },
         To: [
           {
-            Email: 'crazyrabbitapparel@gmail.com',
+            Email: 'crazy.rabbit.apparel@gmail.com',
             Name: 'Crazy Rabbit Apparel',
           },
         ],
