@@ -1,19 +1,22 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express, { Request, Response } from 'express';
 import Stripe from 'stripe';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import twilio from 'twilio';
 import Mailjet from 'node-mailjet';
 
-dotenv.config();
-
+let stripe: Stripe | null = null;
 const stripeSecretKey = process.env['STRIPE_SECRET_KEY'];
-if (!stripeSecretKey) {
-  throw new Error('STRIPE_SECRET_KEY environment variable is not set');
+if (stripeSecretKey) {
+  stripe = new Stripe(stripeSecretKey, {
+  apiVersion: '2025-09-30.clover',
+  });
+  console.log('✅ Stripe payments enabled.');
+} else {
+  console.warn('⚠️  Stripe environment variables not set. Payments are disabled.');
 }
-const stripe = new Stripe(stripeSecretKey, {
-  apiVersion: '2025-08-27.basil',
-});
 
 // Twilio Configuration
 const twilioAccountSid = process.env['TWILIO_ACCOUNT_SID'];
@@ -26,6 +29,21 @@ if (twilioAccountSid && twilioAuthToken && twilioPhoneNumber) {
   console.log('✅ Twilio SMS notifications enabled.');
 } else {
   console.warn('⚠️  Twilio environment variables not fully set. SMS notifications are disabled.');
+}
+
+// Mailjet Configuration
+let mailjet: Mailjet | null = null;
+const mailjetApiKey = process.env['MAILJET_API_KEY'];
+const mailjetApiSecret = process.env['MAILJET_API_SECRET'];
+
+if (mailjetApiKey && mailjetApiSecret) {
+  mailjet = new Mailjet({
+    apiKey: mailjetApiKey,
+    apiSecret: mailjetApiSecret,
+  });
+  console.log('✅ Mailjet email notifications enabled.');
+} else {
+  console.warn('⚠️  Mailjet environment variables not fully set. Email notifications are disabled.');
 }
 
 const app = express();
@@ -43,6 +61,9 @@ interface Item {
 }
 
 app.post('/api/checkout', async (req: Request, res: Response) => {
+  if (!stripe) {
+    return res.status(503).json({ error: 'Payment service is not available.' });
+  }
   try {
     const { items } = req.body;
 
@@ -73,7 +94,7 @@ app.post('/api/checkout', async (req: Request, res: Response) => {
           currency: 'usd',
           product_data: productData,
           unit_amount: Math.round(item.price * 100),
-          tax_behavior: 'exclusive',
+          tax_behavior: 'exclusive' as Stripe.Checkout.SessionCreateParams.LineItem.PriceData.TaxBehavior,
         },
         quantity: item.qty,
       };
@@ -151,10 +172,9 @@ app.get('/api/contact', (req: Request, res: Response) => {
 });
 
 app.post('/api/contact', async (req: Request, res: Response) => {
-  const mailjet = new Mailjet({
-    apiKey: process.env['MAILJET_API_KEY'],
-    apiSecret: process.env['MAILJET_API_SECRET'],
-  });
+  if (!mailjet) {
+    return res.status(503).json({ error: 'Email service is not available.' });
+  }
   const { name, lastName, orderNumber, email, description } = req.body;
   const request = mailjet.post('send', { version: 'v3.1' }).request({
     Messages: [
