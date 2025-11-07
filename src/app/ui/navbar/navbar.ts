@@ -18,4 +18,8 @@ export class Navbar {
   toggleMenu() {
     this.menuOpen.set(!this.menuOpen());
   }
+
+  closeMenu() {
+    this.menuOpen.set(false);
+  }
 }
