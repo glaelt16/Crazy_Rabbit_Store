@@ -1,12 +1,41 @@
-<h1>Your Cart</h1>
-<div *ngIf="cart.cartItems().length === 0">Your cart is empty.</div>
-<ul>
-  <li *ngFor="let item of cart.cartItems()">
-    {{ item.name }} × {{ item.qty }} — {{ item.price | currency:'USD' }}
-    <button (click)="cart.remove(item.id)">Remove</button>
-  </li>
-</ul>
-<h3>Total: {{ cart.total() | currency:'USD' }}</h3>
-<div>
-  <a routerLink="/checkout"><button [disabled]="cart.cartItems().length === 0">Proceed to Checkout</button></a>
+<div class="cart-container">
+  <h1 class="cart-header">Your Cart</h1>
+
+  <div *ngIf="cart.cartItems().length === 0" class="empty-cart">
+    <h3>Your cart is currently empty.</h3>
+    <a routerLink="/products" class="btn-shop">Continue Shopping</a>
+  </div>
+
+  <div *ngIf="cart.cartItems().length > 0">
+    <ul class="cart-list">
+      <li *ngFor="let item of cart.cartItems()" class="cart-item">
+        <div class="item-info">
+          <span class="item-name">{{ item.name }}</span>
+          <span class="item-meta">
+            <ng-container *ngIf="item.color">{{ item.color.name }}</ng-container>
+            <ng-container *ngIf="item.color && item.size"> | </ng-container>
+            <ng-container *ngIf="item.size">Size: {{ item.size }}</ng-container>
+          </span>
+        </div>
+
+        <div class="item-pricing">
+          <span class="price">{{ item.price | currency:'USD' }} × {{ item.qty }}</span>
+          <button class="btn-remove" (click)="cart.remove(item.id, item.size, item.color)">Remove</button>
+        </div>
+      </li>
+    </ul>
+
+    <div class="cart-summary">
+      <div class="total-row">
+        <span>Total:</span>
+        <span>{{ cart.total() | currency:'USD' }}</span>
+      </div>
+
+      <a routerLink="/checkout" style="width: 100%; display: flex; justify-content: flex-end; text-decoration: none;">
+        <button class="btn-checkout" [disabled]="cart.cartItems().length === 0">
+          Proceed to Checkout
+        </button>
+      </a>
+    </div>
+  </div>
 </div>

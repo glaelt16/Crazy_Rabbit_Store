@@ -7,7 +7,8 @@ import { CommonModule} from '@angular/common';
 @Component({
   standalone: true,
   imports: [NgFor, CurrencyPipe, RouterLink, CommonModule],
-  templateUrl: './cart.component.html'
+  templateUrl: './cart.component.html',
+  styleUrls: ['./cart.component.scss']
 })
 export class CartComponent {
   cart = inject(CartService);
