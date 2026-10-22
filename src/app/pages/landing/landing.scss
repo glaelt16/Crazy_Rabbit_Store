@@ -27,18 +27,19 @@
   height: auto;
   margin-bottom: 2rem;
   filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
-  animation: spinInterval 20s ease-in-out infinite;
+  animation: spinYInterval 10s ease-in-out infinite;
+  transform-style: preserve-3d;
 }
 
-@keyframes spinInterval {
+@keyframes spinYInterval {
   0% {
-    transform: rotate(0deg);
+    transform: rotateY(0deg);
   }
-  5% {
-    transform: rotate(360deg);
+  30% {
+    transform: rotateY(1080deg);
   }
   100% {
-    transform: rotate(360deg);
+    transform: rotateY(1080deg);
   }
 }
 
