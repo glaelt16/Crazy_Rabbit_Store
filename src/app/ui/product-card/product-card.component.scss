@@ -14,10 +14,17 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid rgba(0,0,0,0.05);
 
+
   &:hover {
     transform: translateY(-8px);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
   }
+
+  &.is-zoomed {
+    transform: none !important;
+    z-index: 999;
+  }
+
 }
 
 .image-gallery {
@@ -32,10 +39,78 @@
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease;
+    cursor: zoom-in;
   }
 
   &:hover img {
     transform: scale(1.05);
+  }
+
+  &.zoomed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: auto;
+
+    img {
+      width: auto;
+      height: auto;
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      cursor: zoom-out;
+    }
+
+    &:hover img {
+      transform: none; /* Disable scale hover on zoomed image */
+    }
+
+    .nav-btn {
+      width: 50px;
+      height: 50px;
+      font-size: 1.5rem;
+      background-color: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      opacity: 1; /* Always show buttons when zoomed */
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.5);
+      }
+    }
+
+    .prev { left: 2rem; }
+    .next { right: 2rem; }
+  }
+
+  .close-zoom-btn {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    width: 44px;
+    height: 44px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1001;
+    transition: background-color 0.2s ease;
+    line-height: 1;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.5);
+    }
   }
 
   .nav-btn {

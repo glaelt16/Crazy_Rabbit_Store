@@ -23,6 +23,7 @@ export class ProductCardComponent implements OnInit {
   selectedSize: string = '';
   selectedColor!: ProductColor;
   currentImageIndex = 0;
+  isZoomed: boolean = false;
 
   ngOnInit() {
     if (this.product.colors && this.product.colors.length > 0) {
@@ -47,11 +48,17 @@ export class ProductCardComponent implements OnInit {
     this.modalService.open();
   }
 
-  nextImage() {
+  nextImage(event?: Event) {
+    if (event) {
+      event.stopPropagation();
+    }
     this.currentImageIndex = (this.currentImageIndex + 1) % this.product.images.length;
   }
 
-  prevImage() {
+  prevImage(event?: Event) {
+    if (event) {
+      event.stopPropagation();
+    }
     this.currentImageIndex = (this.currentImageIndex - 1 + this.product.images.length) % this.product.images.length;
   }
 
@@ -61,5 +68,9 @@ export class ProductCardComponent implements OnInit {
         next: () => console.log('Amazon link click notified.'),
         error: (err) => console.error('Error notifying Amazon link click:', err)
       });
+  }
+
+  toggleZoom() {
+    this.isZoomed = !this.isZoomed;
   }
 }

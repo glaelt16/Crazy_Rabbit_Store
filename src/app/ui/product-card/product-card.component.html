@@ -1,8 +1,9 @@
-<div class="card">
-  <div class="image-gallery">
-    <button class="nav-btn prev" (click)="prevImage()">&#10094;</button>
-    <img [src]="product.images[currentImageIndex]" [alt]="product.name" />
-    <button class="nav-btn next" (click)="nextImage()">&#10095;</button>
+<div class="card" [class.is-zoomed]="isZoomed">
+  <div class="image-gallery" [class.zoomed]="isZoomed">
+    <button class="close-zoom-btn" *ngIf="isZoomed" (click)="toggleZoom()">&times;</button>
+    <button class="nav-btn prev" (click)="prevImage($event)">&#10094;</button>
+    <img [src]="product.images[currentImageIndex]" [alt]="product.name" (click)="toggleZoom()" />
+    <button class="nav-btn next" (click)="nextImage($event)">&#10095;</button>
   </div>
 
   <div class="card-content">
