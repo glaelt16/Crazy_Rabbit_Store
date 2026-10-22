@@ -11,9 +11,22 @@
   text-align: center;
 }
 
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 .logo {
     width: 400px;
     margin-bottom: 2rem;
+    animation: float 4s ease-in-out infinite;
 }
 
 .btn {
