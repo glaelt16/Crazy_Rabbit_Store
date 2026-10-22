@@ -8,4 +8,5 @@
   <p>Total: <strong>{{ total() | currency:'USD' }}</strong></p>
 </div>
 
-<p><button (click)="redirectToCheckout()">Pay securely with Stripe</button></p>
+<p><button (click)="redirectToCheckout()" [disabled]="isLoading">Pay securely with Stripe</button></p>
+<p *ngIf="isLoading" style="color: #666; font-style: italic;">Please wait for Stripe to load...</p>
