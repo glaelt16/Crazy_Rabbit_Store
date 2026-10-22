@@ -5,8 +5,12 @@
   </a>
   <!--<h1>Crazy Rabbit Apparel</h1> -->
   
-  <button class="navbar-toggler" (click)="toggleMenu()">
-    <span class="navbar-toggler-icon"></span>
+  <button class="navbar-toggler" (click)="toggleMenu()" [class.open]="menuOpen()">
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </button>
 
   <nav class="navbar-collapse" [class.show]="menuOpen()">

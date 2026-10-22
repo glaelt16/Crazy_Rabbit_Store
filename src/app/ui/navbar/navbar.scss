@@ -6,10 +6,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem;
+  padding: 0.5rem 2rem;
   background-color: #FFFFFF;
   color: #000;
   position: relative;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .navbar-brand {
@@ -30,34 +32,39 @@
   cursor: pointer;
 }
 
-.navbar-toggler-icon {
-  display: block;
+.hamburger {
   width: 30px;
-  height: 3px;
-  background-color: #000;
+  height: 24px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
+  span {
+    display: block;
+    height: 3px;
     width: 100%;
-    height: 100%;
-    background-color: #000;
-    left: 0;
+    background: #000;
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
   }
+}
 
-  &::before {
-    top: -8px;
-  }
+.navbar-toggler.open .hamburger span:nth-child(1) {
+  transform: translateY(10.5px) rotate(45deg);
+}
 
-  &::after {
-    bottom: -8px;
-  }
+.navbar-toggler.open .hamburger span:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar-toggler.open .hamburger span:nth-child(3) {
+  transform: translateY(-10.5px) rotate(-45deg);
 }
 
 .navbar-collapse {
     display: flex;
+    align-items: center;
     width: auto;
     position: inherit;
 }
@@ -82,8 +89,13 @@
 }
 
 @media (max-width: 768px) {
+  .navbar {
+    padding: 0.5rem 1rem;
+  }
+
   .navbar-toggler {
     display: block;
+    z-index: 101; /* Ensure toggler is above the menu if needed */
   }
 
   .navbar-collapse {
@@ -91,28 +103,42 @@
     flex-direction: column;
     width: 100%;
     position: absolute;
-    top: 60px;
+    top: 100%; /* Push right below the navbar */
     left: 0;
-    background-color: #111;
-    padding: 1rem;
+    background-color: #ffffff; /* Modern white background */
+    padding: 2rem 1rem;
     box-sizing: border-box;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    z-index: 99; /* Ensure menu is above other content */
 
     &.show {
       display: flex;
+      animation: slideDown 0.3s ease forwards;
     }
   }
 
   .nav-link {
     margin-left: 0;
     margin-bottom: 1rem;
-    color: #FFFFFF;
-  }
-
-  .h1{
-    color: rgb(224, 224, 230);
-    font: size 0.8em;
+    color: #111;
+    width: 100%;
     text-align: center;
-    margin: top 10px;;
-    padding: 2px;
+    padding: 15px;
+    border-color: #eee;
+
+    &:hover {
+      background-color: #f8f9fa;
+    }
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
