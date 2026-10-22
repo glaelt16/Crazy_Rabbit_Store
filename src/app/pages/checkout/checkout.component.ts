@@ -31,6 +31,7 @@ export class CheckoutComponent {
   cart = inject(CartService);
   http = inject(HttpClient);
   private stripePromise: Promise<Stripe | null>;
+  isLoading = false;
 
   // Calculate subtotal, tax, and total using computed signals
   subtotal = computed(() => this.cart.cartItems().reduce((acc, item) => acc + item.price * (item.qty || 1), 0));
@@ -43,6 +44,8 @@ export class CheckoutComponent {
   }
 
   async redirectToCheckout() {
+    this.isLoading = true;
+
     const items: CartItem[] = this.cart.cartItems().map((item: any) => ({
       name: item.name,
       price: Number(item.price),
@@ -62,16 +65,21 @@ export class CheckoutComponent {
             if (error) {
               console.error('Stripe redirectToCheckout error:', error);
               alert('Error: Could not redirect to Stripe.');
+              this.isLoading = false;
             }
+          } else {
+            this.isLoading = false;
           }
         } else {
           console.error('Unexpected response:', res);
           alert('Error: Checkout Session ID not returned.');
+          this.isLoading = false;
         }
       },
       error: (err) => {
         console.error('❌ Checkout API Error:', err);
         alert('Failed to start checkout. Please try again.');
+        this.isLoading = false;
       },
     });
   }
