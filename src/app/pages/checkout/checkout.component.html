@@ -1,11 +1,56 @@
-<h1>Checkout</h1>
+<div class="checkout-container">
+  <h1>Checkout</h1>
 
-<div>
-  <h3>Order Summary</h3>
-  <p>Subtotal: <strong>{{ subtotal() | currency:'USD' }}</strong></p>
-  <p>Sales Tax (7%): <strong>{{ tax() | currency:'USD' }}</strong></p>
-  <hr>
-  <p>Total: <strong>{{ total() | currency:'USD' }}</strong></p>
+  <div class="checkout-grid">
+    <div class="cart-items">
+      <h3>Items in your cart</h3>
+
+      <div *ngIf="cart.cartItems().length === 0" class="empty-cart">
+        Your cart is empty.
+      </div>
+
+      <div class="cart-item" *ngFor="let item of cart.cartItems()">
+        <div class="item-details">
+          <span class="item-name">{{ item.name }}</span>
+          <div class="item-meta">
+            <span *ngIf="item.size">Size: {{ item.size }}</span>
+            <span *ngIf="item.color">Color: {{ item.color.name }}</span>
+          </div>
+        </div>
+        <div class="item-price-qty">
+          <div class="item-price">{{ item.price | currency:'USD' }}</div>
+          <div class="item-qty">Qty: {{ item.qty || 1 }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="order-summary">
+      <h3>Order Summary</h3>
+
+      <div class="summary-line">
+        <span>Subtotal</span>
+        <span>{{ subtotal() | currency:'USD' }}</span>
+      </div>
+
+      <div class="summary-line">
+        <span>Sales Tax (7%)</span>
+        <span>{{ tax() | currency:'USD' }}</span>
+      </div>
+
+      <div class="summary-line total">
+        <span>Total</span>
+        <span>{{ total() | currency:'USD' }}</span>
+      </div>
+
+      <button
+        class="checkout-btn"
+        (click)="redirectToCheckout()"
+        [disabled]="cart.cartItems().length === 0 || isLoading">
+        <i class="bi bi-lock-fill"></i> Pay securely with Stripe
+      </button>
+      <div class="loading-message" *ngIf="isLoading">
+        Please wait, connecting to Stripe...
+      </div>
+    </div>
+  </div>
 </div>
-
-<p><button (click)="redirectToCheckout()">Pay securely with Stripe</button></p>
