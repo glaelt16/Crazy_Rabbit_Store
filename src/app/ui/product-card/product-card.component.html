@@ -1,40 +1,58 @@
 <div class="card">
   <div class="image-gallery">
-    <button class="prev" (click)="prevImage()">&#10094;</button>
+    <button class="nav-btn prev" (click)="prevImage()">&#10094;</button>
     <img [src]="product.images[currentImageIndex]" [alt]="product.name" />
-    <button class="next" (click)="nextImage()">&#10095;</button>
+    <button class="nav-btn next" (click)="nextImage()">&#10095;</button>
   </div>
-  <h3>{{ product.name }}</h3>
-  <p class="price">${{ product.price }}</p>
-  <p class="desc">{{ product.description }}</p>
-  <div class="color-selector" *ngIf="product.colors">
-    <span
-      *ngFor="let color of product.colors"
-      class="color-option"
-      [style.background-color]="color.name.toLowerCase()"
-      (click)="selectColor(color)"
-      [class.selected]="color === selectedColor"
-    ></span>
-  </div>
-  <div class="size-selector" *ngIf="product.sizes">
-    <select [(ngModel)]="selectedSize">
-      <option value="">Select size</option>
-      <option *ngFor="let size of product.sizes" [value]="size">
-        {{ size }}
-      </option>
-    </select>
-  </div>
-  <div class="buttons">
-    <button (click)="addToCart()">Add to cart</button>
-    <a
-      *ngIf="product.amazonLink"
-      [href]="product.amazonLink"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="amazon-link"
-      (click)="notifyAmazonLinkClick()"
-    >
-      View on Amazon
-    </a>
+
+  <div class="card-content">
+    <div class="card-header">
+      <h3 class="product-name">{{ product.name }}</h3>
+      <p class="price">${{ product.price }}</p>
+    </div>
+
+    <p class="desc">{{ product.description }}</p>
+
+    <div class="selectors" *ngIf="product.colors || product.sizes">
+      <div class="color-selector" *ngIf="product.colors">
+        <span class="selector-label">Color:</span>
+        <div class="color-options">
+          <span
+            *ngFor="let color of product.colors"
+            class="color-option"
+            [style.background-color]="color.name.toLowerCase()"
+            (click)="selectColor(color)"
+            [class.selected]="color === selectedColor"
+            [title]="color.name"
+          ></span>
+        </div>
+      </div>
+
+      <div class="size-selector" *ngIf="product.sizes">
+        <span class="selector-label">Size:</span>
+        <select [(ngModel)]="selectedSize" class="modern-select">
+          <option value="">Choose size</option>
+          <option *ngFor="let size of product.sizes" [value]="size">
+            {{ size }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button class="btn btn-add" (click)="addToCart()">
+        <i class="bi bi-cart-plus"></i> Add to Cart
+      </button>
+      <a
+        *ngIf="product.amazonLink"
+        [href]="product.amazonLink"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn-amazon"
+        (click)="notifyAmazonLinkClick()"
+      >
+        <i class="bi bi-amazon"></i> Amazon
+      </a>
+    </div>
   </div>
 </div>
