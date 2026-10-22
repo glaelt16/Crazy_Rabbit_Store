@@ -1,22 +1,38 @@
-<div class="modal-overlay" [class.hidden]="!modalService.isOpen$()">
-  <div class="modal-content">
-    <h2>Item Added to Cart</h2>
+<div class="modal-overlay" [class.hidden]="!modalService.isOpen$()" (click)="modalService.close()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <h2 class="modal-header">Item Added to Cart</h2>
+
     <div *ngIf="cartService.cartItems().length > 0; else emptyCart">
-      <ul>
-        <li *ngFor="let item of cartService.cartItems()">
-          {{ item.name }}<span *ngIf="item.color"> - {{ item.color.name }}</span><span *ngIf="item.size"> - {{ item.size }}</span> - {{ item.price | currency }} x {{ item.qty }}
-          <button (click)="cartService.remove(item.id, item.size, item.color)">Remove</button>
+      <ul class="cart-items">
+        <li *ngFor="let item of cartService.cartItems()" class="cart-item">
+          <div class="item-details">
+            <span class="item-name">{{ item.name }}</span>
+            <span class="item-meta">
+              <ng-container *ngIf="item.color">{{ item.color.name }}</ng-container>
+              <ng-container *ngIf="item.color && item.size"> | </ng-container>
+              <ng-container *ngIf="item.size">Size: {{ item.size }}</ng-container>
+            </span>
+          </div>
+          <div style="display: flex; align-items: center;">
+            <span class="item-price">{{ item.price | currency }} x {{ item.qty }}</span>
+            <button class="btn-remove" (click)="cartService.remove(item.id, item.size, item.color)">Remove</button>
+          </div>
         </li>
       </ul>
-      <hr>
-      <p>Total: {{ cartService.total() | currency }}</p>
+
+      <div class="cart-total">
+        <span>Total:</span>
+        <span>{{ cartService.total() | currency }}</span>
+      </div>
     </div>
+
     <ng-template #emptyCart>
-      <p>Your cart is empty.</p>
+      <p class="empty-state">Your cart is empty.</p>
     </ng-template>
+
     <div class="modal-actions">
-      <button (click)="modalService.close()">Continue Shopping</button>
-      <a routerLink="/checkout" (click)="modalService.close()">Go to Checkout</a>
+      <button class="btn-outline" (click)="modalService.close()">Continue Shopping</button>
+      <a routerLink="/checkout" class="btn-primary" (click)="modalService.close()">Go to Checkout</a>
     </div>
   </div>
 </div>

@@ -1,11 +1,29 @@
-<h1>Checkout</h1>
+<div class="checkout-container">
+  <h1 class="checkout-header">Checkout</h1>
 
-<div>
-  <h3>Order Summary</h3>
-  <p>Subtotal: <strong>{{ subtotal() | currency:'USD' }}</strong></p>
-  <p>Sales Tax (7%): <strong>{{ tax() | currency:'USD' }}</strong></p>
-  <hr>
-  <p>Total: <strong>{{ total() | currency:'USD' }}</strong></p>
+  <div class="order-summary">
+    <h3 class="summary-title">Order Summary</h3>
+
+    <div class="summary-row">
+      <span>Subtotal:</span>
+      <strong>{{ subtotal() | currency:'USD' }}</strong>
+    </div>
+
+    <div class="summary-row">
+      <span>Sales Tax (7%):</span>
+      <strong>{{ tax() | currency:'USD' }}</strong>
+    </div>
+
+    <div class="summary-row total">
+      <span>Total:</span>
+      <strong>{{ total() | currency:'USD' }}</strong>
+    </div>
+  </div>
+
+  <div class="checkout-action">
+    <button class="btn-stripe" (click)="redirectToCheckout()">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+      Pay securely with Stripe
+    </button>
+  </div>
 </div>
-
-<p><button (click)="redirectToCheckout()">Pay securely with Stripe</button></p>

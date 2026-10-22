@@ -26,6 +26,7 @@ interface CheckoutResponse {
   standalone: true,
   imports: [CommonModule, HttpClientModule],
   templateUrl: './checkout.component.html',
+  styleUrls: ['./checkout.component.scss']
 })
 export class CheckoutComponent {
   cart = inject(CartService);
