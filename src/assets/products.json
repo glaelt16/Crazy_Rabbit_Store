@@ -41,9 +41,51 @@
       }
     ]
   },
-
   {
     "id": 2,
+    "name": "Crazy Rabbit. Christmas Pullover Hoodie",
+    "price": 35.99,
+    "images": [
+      "https://m.media-amazon.com/images/I/A1HzUhfqU0L._CLa%7C2140%2C2000%7CB1lfSP0kKmL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png",
+      "https://m.media-amazon.com/images/I/A1yJMvhowFL._CLa%7C2140%2C2000%7CB1lfSP0kKmL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png",
+      "https://m.media-amazon.com/images/I/B1ozZDEKKmL._CLa%7C2140%2C2000%7CB1lfSP0kKmL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png",
+      "https://m.media-amazon.com/images/I/B16MJOYw4-L._CLa%7C2140%2C2000%7CB1lfSP0kKmL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png",
+      "https://m.media-amazon.com/images/I/A1wl1SGv54L._CLa%7C2140%2C2000%7CB1lfSP0kKmL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png",
+      "https://m.media-amazon.com/images/I/A1cNS7TFxEL._CLa%7C2140%2C2000%7CB1lfSP0kKmL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png"
+    ],
+    "description": "100% cotton.",
+    "amazonLink": "https://www.amazon.com/dp/B0HNT5P9QV?customId=B0D82N1ZT7&customizationToken=MC_Assembly_1%23B0D82N1ZT7&th=1&psc=1",
+    "sizes": ["S", "M", "L", "X-Large"],
+    "colors": [
+      {
+        "name": "Pink",
+        "image": "https://m.media-amazon.com/images/I/A1HzUhfqU0L._CLa%7C2140%2C2000%7CB1lfSP0kKmL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png"
+      },
+      {
+        "name": "Blue",
+        "image": "https://m.media-amazon.com/images/I/A1yJMvhowFL._CLa%7C2140%2C2000%7CB1lfSP0kKmL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png"
+      },
+      {
+        "name": "Green",
+        "image": "https://m.media-amazon.com/images/I/B1ozZDEKKmL._CLa%7C2140%2C2000%7CB1lfSP0kKmL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png"
+      },
+      {
+        "name": "Gray",
+        "image": "https://m.media-amazon.com/images/I/B16MJOYw4-L._CLa%7C2140%2C2000%7CB1lfSP0kKmL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png"
+      },
+      {
+        "name": "Red",
+        "image": "https://m.media-amazon.com/images/I/A1wl1SGv54L._CLa%7C2140%2C2000%7CB1lfSP0kKmL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png"
+      },
+      {
+        "name": "yellow",
+        "image": "https://m.media-amazon.com/images/I/A1cNS7TFxEL._CLa%7C2140%2C2000%7CB1lfSP0kKmL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png"
+      }
+    ]
+  },
+
+  {
+    "id": 3,
     "name": "Crazy Rabbit. Pullover Hoodie",
     "price": 35.99,
     "images": [
@@ -81,7 +123,7 @@
     ]
   },
   {
-    "id": 3,
+    "id": 4,
     "name": "Crazy Rabbit. Premium Tri-Blend T-Shirt",
     "price": 24.99,
     "images": [
@@ -115,7 +157,7 @@
     ]
   },
    {
-    "id": 4,
+    "id": 5,
     "name": "Crazy Rabbit. Pullover Hoodie",
     "price": 35.99,
     "images": [
@@ -154,33 +196,6 @@
     ]
   },
   {
-    "id": 5,
-    "name": "Eggs and Platain Zip Hoodie",
-    "price": 37.99,
-    "images": [
-      "https://m.media-amazon.com/images/I/B1On3Y+j0-L._CLa%7C2140%2C2000%7C613kXh8rWuL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png",
-      "https://m.media-amazon.com/images/I/B1+0DsVJ9SL._CLa%7C2140%2C2000%7C613kXh8rWuL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png",
-      "https://m.media-amazon.com/images/I/C1V4c7YYwBL._CLa%7C2140%2C2000%7C613kXh8rWuL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png"
-    ],
-    "description": "100% cotton.",
-    "amazonLink": "https://amzn.to/48jF94o",
-    "sizes": ["S", "M", "L"],
-    "colors": [
-      {
-        "name": "Black",
-        "image": "https://m.media-amazon.com/images/I/B1On3Y+j0-L._CLa%7C2140%2C2000%7C613kXh8rWuL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png"
-      },
-      {
-        "name": "Blue",
-        "image": "https://m.media-amazon.com/images/I/B1+0DsVJ9SL._CLa%7C2140%2C2000%7C613kXh8rWuL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png"
-      },
-      {
-        "name": "Green",
-        "image": "https://m.media-amazon.com/images/I/C1V4c7YYwBL._CLa%7C2140%2C2000%7C613kXh8rWuL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png"
-      }
-    ]
-  },
- {
     "id": 6,
     "name": "Crazy Rabbit. Premium Tri-Blend T-Shirt",
     "price": 24.99,
@@ -212,33 +227,9 @@
       }
     ]
   },
-
-   {
-    "id": 7,
-    "name": "Egg and Platains Pullover Hoodie",
-    "price": 35.99,
-    "images": [
-      "https://m.media-amazon.com/images/I/B1mEhjGJ2nL._CLa%7C2140%2C2000%7CB1qeqUfuDpL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png",
-      "https://m.media-amazon.com/images/I/B1D6UUCtZNL._CLa%7C2140%2C2000%7CB1qeqUfuDpL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png"
-
-    ],
-    "description": "100% cotton.",
-    "amazonLink": "https://amzn.to/48jF94o",
-    "sizes": ["S", "M", "L"],
-    "colors": [
-      {
-        "name": "Black",
-        "image": "https://m.media-amazon.com/images/I/B1mEhjGJ2nL._CLa%7C2140%2C2000%7CB1qeqUfuDpL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png"
-      },
-      {
-        "name": "Blue",
-        "image": "https://m.media-amazon.com/images/I/B1D6UUCtZNL._CLa%7C2140%2C2000%7CB1qeqUfuDpL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_SX679_.png"
-      }
-    
-    ]
-  },
+   
   {
-    "id": 8,
+    "id": 7,
     "name": "Crazy Rabbit. Premium T-Shirt",
     "price": 19.99,
     "images": [
@@ -276,7 +267,7 @@
     ]
   },
   {
-    "id": 9,
+    "id": 8,
     "name": "Crazy Rabbit. Hoodie",
     "price": 39.99,
     "images": [
