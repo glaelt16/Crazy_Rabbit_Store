@@ -22,15 +22,109 @@
   animation: fadeIn 1s ease-out;
 }
 
-.hero-logo {
+.logo-container {
+  position: relative;
+  display: inline-block;
   width: 100%;
   max-width: 350px;
-  height: auto;
   margin-bottom: 2rem;
+}
+
+.hero-logo {
+  width: 100%;
+  height: auto;
   filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
   animation: runAndSpin 10s ease-in-out infinite;
   transform-style: preserve-3d;
+  display: block;
 }
+
+.firework {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.firework-1 {
+  top: 20%;
+  left: 20%;
+  animation: fireworkExplode1 10s infinite;
+}
+
+.firework-2 {
+  top: 30%;
+  left: 80%;
+  animation: fireworkExplode2 10s infinite;
+}
+
+.firework-3 {
+  top: 70%;
+  left: 15%;
+  animation: fireworkExplode3 10s infinite;
+}
+
+@keyframes fireworkExplode1 {
+  0%, 30%, 45%, 100% {
+    opacity: 0;
+    box-shadow: 0 0 0 0 transparent;
+  }
+  35% {
+    opacity: 1;
+    box-shadow:
+      0 -40px 0 0px #ff0044,
+      40px 0 0 0px #ff0044,
+      0 40px 0 0px #ff0044,
+      -40px 0 0 0px #ff0044,
+      28px -28px 0 0px #ffbb00,
+      28px 28px 0 0px #ffbb00,
+      -28px 28px 0 0px #ffbb00,
+      -28px -28px 0 0px #ffbb00;
+  }
+}
+
+@keyframes fireworkExplode2 {
+  0%, 40%, 55%, 100% {
+    opacity: 0;
+    box-shadow: 0 0 0 0 transparent;
+  }
+  45% {
+    opacity: 1;
+    box-shadow:
+      0 -50px 0 0px #00ff88,
+      50px 0 0 0px #00ff88,
+      0 50px 0 0px #00ff88,
+      -50px 0 0 0px #00ff88,
+      35px -35px 0 0px #00aaff,
+      35px 35px 0 0px #00aaff,
+      -35px 35px 0 0px #00aaff,
+      -35px -35px 0 0px #00aaff;
+  }
+}
+
+@keyframes fireworkExplode3 {
+  0%, 50%, 65%, 100% {
+    opacity: 0;
+    box-shadow: 0 0 0 0 transparent;
+  }
+  55% {
+    opacity: 1;
+    box-shadow:
+      0 -30px 0 0px #ff00ff,
+      30px 0 0 0px #ff00ff,
+      0 30px 0 0px #ff00ff,
+      -30px 0 0 0px #ff00ff,
+      21px -21px 0 0px #ffff00,
+      21px 21px 0 0px #ffff00,
+      -21px 21px 0 0px #ffff00,
+      -21px -21px 0 0px #ffff00;
+  }
+}
+
 
 @keyframes runAndSpin {
   0% {
