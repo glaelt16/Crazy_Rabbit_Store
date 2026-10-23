@@ -1,6 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { firstValueFrom } from 'rxjs';
 
 export interface ChatMessage {
   role: 'user' | 'assistant' | 'system';
@@ -20,10 +21,12 @@ export class ChatBotService {
   initProactiveChat() {
     if (this.messages().length === 0) {
       setTimeout(() => {
-        this.messages.set([
-          { role: 'assistant', content: 'Hi there! I am the Crazy Rabbit Apparel assistant. Do you need any help with our products and selection today?' }
-        ]);
-        this.isOpen.set(true);
+        if (this.messages().length === 0) {
+          this.messages.set([
+            { role: 'assistant', content: 'Hi there! I am the Crazy Rabbit Apparel assistant. Do you need any help with our products and selection today?' }
+          ]);
+          this.isOpen.set(true);
+        }
       }, 3000); // 3 second delay before asking
     }
   }
@@ -45,10 +48,12 @@ export class ChatBotService {
     this.isLoading.set(true);
 
     try {
-      const response = await this.http.post<{ message: ChatMessage }>(
-        `${environment.apiUrl}/chat`,
-        { messages: this.messages().filter(m => m.role !== 'system') }
-      ).toPromise();
+      const response = await firstValueFrom(
+        this.http.post<{ message: ChatMessage }>(
+          `${environment.apiUrl}/chat`,
+          { messages: this.messages().filter(m => m.role !== 'system') }
+        )
+      );
 
       if (response && response.message) {
         this.messages.update(msgs => [...msgs, response.message]);

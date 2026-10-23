@@ -11,7 +11,7 @@
            class="message-bubble"
            [class.user]="msg.role === 'user'"
            [class.bot]="msg.role === 'assistant'">
-        {{ msg.content }}
+        <div [innerHTML]="msg.content | markdown"></div>
       </div>
       <div *ngIf="chatService.isLoading()" class="message-bubble bot typing">
         <span class="dot"></span><span class="dot"></span><span class="dot"></span>

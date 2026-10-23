@@ -1,12 +1,24 @@
-import { Component, ElementRef, ViewChild, AfterViewChecked, OnInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewChecked, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ChatBotService } from '../../core/services/chat-bot.service';
+import { marked } from 'marked';
+
+@Pipe({
+  name: 'markdown',
+  standalone: true
+})
+export class MarkdownPipe implements PipeTransform {
+  transform(value: string): string {
+    if (!value) return '';
+    return marked.parse(value) as string;
+  }
+}
 
 @Component({
   selector: 'app-chat-bot',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MarkdownPipe],
   templateUrl: './chat-bot.html',
   styleUrl: './chat-bot.scss'
 })
