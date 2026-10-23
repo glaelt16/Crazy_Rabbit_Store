@@ -21,6 +21,7 @@
     <form class="chat-input-area" (ngSubmit)="sendMessage()">
       <input type="text"
              [(ngModel)]="userInput"
+             (ngModelChange)="resetInactivityTimer()"
              name="userInput"
              placeholder="Type a message..."
              autocomplete="off"
