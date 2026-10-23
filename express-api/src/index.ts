@@ -4,15 +4,27 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import twilio from 'twilio';
 import Mailjet from 'node-mailjet';
+import OpenAI from 'openai';
+import fs from 'fs';
+import path from 'path';
 
 dotenv.config();
+
+let openai: OpenAI | null = null;
+if (process.env['OPENAI_API_KEY']) {
+  openai = new OpenAI({
+    apiKey: process.env['OPENAI_API_KEY'],
+  });
+} else {
+  console.warn('⚠️  OPENAI_API_KEY environment variable not set. Chat functionality will be disabled.');
+}
 
 const stripeSecretKey = process.env['STRIPE_SECRET_KEY'];
 if (!stripeSecretKey) {
   throw new Error('STRIPE_SECRET_KEY environment variable is not set');
 }
 const stripe = new Stripe(stripeSecretKey, {
-  apiVersion: '2025-08-27.basil',
+  apiVersion: '2025-09-30.clover',
 });
 
 // Twilio Configuration
@@ -73,7 +85,7 @@ app.post('/api/checkout', async (req: Request, res: Response) => {
           currency: 'usd',
           product_data: productData,
           unit_amount: Math.round(item.price * 100),
-          tax_behavior: 'exclusive',
+          tax_behavior: 'exclusive' as Stripe.Checkout.SessionCreateParams.LineItem.PriceData.TaxBehavior,
         },
         quantity: item.qty,
       };
@@ -148,6 +160,55 @@ app.post('/api/notify-amazon-click', async (req: Request, res: Response) => {
 
 app.get('/api/contact', (req: Request, res: Response) => {
   res.status(405).json({ message: 'Method Not Allowed. Please use POST to submit the contact form.' });
+});
+
+app.post('/api/chat', async (req: Request, res: Response) => {
+  if (!openai) {
+    return res.status(503).json({ error: 'Chat functionality is currently disabled.' });
+  }
+
+  try {
+    const { messages } = req.body;
+
+    if (!messages || !Array.isArray(messages)) {
+      return res.status(400).json({ error: 'Invalid messages array' });
+    }
+
+    // Load products data to provide context to the bot
+    let productsContext = '';
+    try {
+      // The products.json is in public/assets/products.json or src/assets/products.json
+      // Depending on where this runs, try to find it. In the Express API it might need to go up one level.
+      const productsPath = path.join(__dirname, '../../src/assets/products.json');
+      const productsData = fs.readFileSync(productsPath, 'utf8');
+      productsContext = `Here is our product catalog in JSON format:\n${productsData}\n\n`;
+    } catch (e) {
+      console.warn('Could not load products.json for chat context.', e);
+    }
+
+    const systemPrompt = `You are a helpful AI assistant for an online apparel store named "Crazy Rabbit Apparel".
+You help customers find products, answer questions about sizing, and assist with checkout.
+Be friendly, concise, and helpful.
+
+${productsContext}
+If a customer asks about a product, refer to the catalog provided above.
+If they ask about something not in the catalog, politely let them know we don't carry that item or don't have information on it.`;
+
+    const chatMessages: OpenAI.Chat.ChatCompletionMessageParam[] = [
+      { role: 'system', content: systemPrompt },
+      ...messages
+    ];
+
+    const response = await openai.chat.completions.create({
+      model: 'gpt-4o-mini', // or another appropriate model
+      messages: chatMessages,
+    });
+
+    return res.json({ message: response.choices[0].message });
+  } catch (error) {
+    console.error('❌ OpenAI Chat Error:', error);
+    return res.status(500).json({ error: 'Failed to process chat message' });
+  }
 });
 
 app.post('/api/contact', async (req: Request, res: Response) => {

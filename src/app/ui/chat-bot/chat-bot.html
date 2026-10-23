@@ -1,0 +1,35 @@
+<div class="chat-bot-container" [class.open]="chatService.isOpen()">
+
+  <div class="chat-window" *ngIf="chatService.isOpen()">
+    <div class="chat-header">
+      <h4>Crazy Rabbit Assistant</h4>
+      <button class="close-btn" (click)="chatService.toggleChat()">×</button>
+    </div>
+
+    <div class="chat-messages" #scrollMe>
+      <div *ngFor="let msg of chatService.messages()"
+           class="message-bubble"
+           [class.user]="msg.role === 'user'"
+           [class.bot]="msg.role === 'assistant'">
+        {{ msg.content }}
+      </div>
+      <div *ngIf="chatService.isLoading()" class="message-bubble bot typing">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      </div>
+    </div>
+
+    <form class="chat-input-area" (ngSubmit)="sendMessage()">
+      <input type="text"
+             [(ngModel)]="userInput"
+             name="userInput"
+             placeholder="Type a message..."
+             autocomplete="off"
+             [disabled]="chatService.isLoading()">
+      <button type="submit" [disabled]="!userInput.trim() || chatService.isLoading()">Send</button>
+    </form>
+  </div>
+
+  <button class="chat-toggle-btn" (click)="chatService.toggleChat()" *ngIf="!chatService.isOpen()">
+    <i class="bi bi-chat-dots-fill"></i>
+  </button>
+</div>
