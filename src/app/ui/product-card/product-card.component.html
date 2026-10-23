@@ -1,7 +1,7 @@
 <div class="card">
   <div class="image-gallery">
     <button class="nav-btn prev" (click)="prevImage($event)">&#10094;</button>
-    <img [src]="product.images[currentImageIndex]" [alt]="product.name" (click)="toggleZoom()" />
+    <img [src]="product.images[currentImageIndex]" [alt]="product.name" (click)="toggleZoom($event)" />
     <button class="nav-btn next" (click)="nextImage($event)">&#10095;</button>
   </div>
 
@@ -57,8 +57,8 @@
   </div>
 </div>
 
-<div class="zoom-overlay" *ngIf="isZoomed" (click)="toggleZoom()">
-  <button class="close-zoom-btn" (click)="toggleZoom()">&times;</button>
+<div class="zoom-overlay" *ngIf="isZoomed" (click)="toggleZoom($event)">
+  <button class="close-zoom-btn" (click)="toggleZoom($event)">&times;</button>
   <button class="nav-btn prev" (click)="prevImage($event)">&#10094;</button>
   <img [src]="product.images[currentImageIndex]" [alt]="product.name" (click)="$event.stopPropagation()" />
   <button class="nav-btn next" (click)="nextImage($event)">&#10095;</button>

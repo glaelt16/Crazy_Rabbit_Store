@@ -1,4 +1,4 @@
-import { Component, Input, inject, OnInit } from '@angular/core';
+import { Component, Input, inject, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Product, ProductColor } from '../../core/models/product.model';
 import { CartService } from '../../core/services/cart.service';
@@ -15,7 +15,16 @@ import { HttpClientModule } from '@angular/common/http';
   templateUrl: './product-card.component.html',
   styleUrls: ['./product-card.component.scss']
 })
-export class ProductCardComponent implements OnInit {
+export class ProductCardComponent implements OnInit, OnDestroy {
+
+  private _toggleScrollLock(lock: boolean) {
+    if (lock) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }
+
   @Input() product!: Product;
   cartService = inject(CartService);
   modalService = inject(ModalService);
@@ -28,6 +37,12 @@ export class ProductCardComponent implements OnInit {
   ngOnInit() {
     if (this.product.colors && this.product.colors.length > 0) {
       this.selectedColor = this.product.colors[0];
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.isZoomed) {
+      this._toggleScrollLock(false);
     }
   }
 
@@ -70,7 +85,12 @@ export class ProductCardComponent implements OnInit {
       });
   }
 
-  toggleZoom() {
+  toggleZoom(event?: Event) {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
     this.isZoomed = !this.isZoomed;
+    this._toggleScrollLock(this.isZoomed);
   }
 }

@@ -177,7 +177,7 @@
 
   &:hover {
     background-color: #333;
-    transform: translateY(-2px);
+    transform: none;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
   }
 }
@@ -185,14 +185,14 @@
 .products-section {
   padding: 5rem 2rem;
   opacity: 0;
-  transform: translateY(30px);
+  transform: none;
   transition: opacity 0.8s ease, transform 0.8s ease;
   max-width: 1400px;
   margin: 0 auto;
 
   &.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
   }
 }
 
@@ -222,11 +222,11 @@
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: none;
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
   }
 }
 
