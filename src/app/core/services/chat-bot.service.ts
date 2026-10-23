@@ -17,11 +17,22 @@ export class ChatBotService {
 
   constructor(private http: HttpClient) {}
 
+  initProactiveChat() {
+    if (this.messages().length === 0) {
+      setTimeout(() => {
+        this.messages.set([
+          { role: 'assistant', content: 'Hi there! I am the Crazy Rabbit Apparel assistant. Do you need any help with our products and selection today?' }
+        ]);
+        this.isOpen.set(true);
+      }, 3000); // 3 second delay before asking
+    }
+  }
+
   toggleChat() {
     this.isOpen.set(!this.isOpen());
     if (this.isOpen() && this.messages().length === 0) {
       this.messages.set([
-        { role: 'assistant', content: 'Hi there! I am the Crazy Rabbit Apparel assistant. How can I help you today?' }
+        { role: 'assistant', content: 'Hi there! I am the Crazy Rabbit Apparel assistant. Do you need any help with our products and selection today?' }
       ]);
     }
   }

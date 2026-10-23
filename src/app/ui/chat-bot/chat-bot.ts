@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, AfterViewChecked } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewChecked, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ChatBotService } from '../../core/services/chat-bot.service';
@@ -10,11 +10,15 @@ import { ChatBotService } from '../../core/services/chat-bot.service';
   templateUrl: './chat-bot.html',
   styleUrl: './chat-bot.scss'
 })
-export class ChatBot implements AfterViewChecked {
+export class ChatBot implements OnInit, AfterViewChecked {
   @ViewChild('scrollMe') private myScrollContainer!: ElementRef;
   userInput: string = '';
 
   constructor(public chatService: ChatBotService) {}
+
+  ngOnInit() {
+    this.chatService.initProactiveChat();
+  }
 
   ngAfterViewChecked() {
     this.scrollToBottom();
