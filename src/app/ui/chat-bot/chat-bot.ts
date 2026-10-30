@@ -62,7 +62,7 @@ export class ChatBot implements OnInit, AfterViewChecked, OnDestroy {
     if (this.chatService.isOpen()) {
       this.inactivityTimer = setTimeout(() => {
         this.chatService.isOpen.set(false);
-      }, 10000);
+      }, 5000);
     }
   }
 

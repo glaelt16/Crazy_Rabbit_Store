@@ -27,7 +27,7 @@ export class ChatBotService {
           ]);
           this.isOpen.set(true);
         }
-      }, 3000); // 3 second delay before asking
+      }, 60000); // 1 minute delay before asking
     }
   }
 
