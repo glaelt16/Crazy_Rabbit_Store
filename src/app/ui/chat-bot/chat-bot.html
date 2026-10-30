@@ -22,6 +22,8 @@
       <input type="text"
              [(ngModel)]="userInput"
              (ngModelChange)="resetInactivityTimer()"
+             (focus)="onInputFocus()"
+             (blur)="onInputBlur()"
              name="userInput"
              placeholder="Type a message..."
              autocomplete="off"

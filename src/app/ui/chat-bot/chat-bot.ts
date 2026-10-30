@@ -25,6 +25,7 @@ export class MarkdownPipe implements PipeTransform {
 export class ChatBot implements OnInit, AfterViewChecked, OnDestroy {
   @ViewChild('scrollMe') private myScrollContainer!: ElementRef;
   userInput: string = '';
+  isFocused: boolean = false;
   private inactivityTimer: any;
 
   constructor(public chatService: ChatBotService) {
@@ -59,11 +60,23 @@ export class ChatBot implements OnInit, AfterViewChecked, OnDestroy {
 
   resetInactivityTimer() {
     this.clearInactivityTimer();
-    if (this.chatService.isOpen()) {
+    if (this.chatService.isOpen() && !this.isFocused && !this.userInput.trim() && !this.chatService.isLoading()) {
       this.inactivityTimer = setTimeout(() => {
-        this.chatService.isOpen.set(false);
+        if (!this.isFocused && !this.userInput.trim() && !this.chatService.isLoading()) {
+          this.chatService.isOpen.set(false);
+        }
       }, 5000);
     }
+  }
+
+  onInputFocus() {
+    this.isFocused = true;
+    this.clearInactivityTimer();
+  }
+
+  onInputBlur() {
+    this.isFocused = false;
+    this.resetInactivityTimer();
   }
 
   clearInactivityTimer() {
